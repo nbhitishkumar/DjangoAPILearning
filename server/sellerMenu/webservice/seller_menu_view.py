@@ -188,7 +188,7 @@ class SellerItemList(generics.ListAPIView):
         return Response(response_data, status=http_status_code)
 
 
-def upload_Image
+
 
 class FileUploadView(mixins.CreateModelMixin, generics.ListAPIView):
     permission_classes = (IsAuthenticated,)

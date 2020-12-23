@@ -1,0 +1,60 @@
+<div class="main-sidebar sidebar-style-2">
+    <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+        <a >
+          <!-- <img alt="image" width="60px" height="60px" src="assets/img/logo.png" class="header-logo" /> -->
+          <!-- <span>Home Baker's Kitchen</span> -->
+        </a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="dropdown">
+          <a href="/dashboard" class="nav-link"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+        </li>
+        <li><a class="nav-link" href="/profile"><i class="fas fa-user-circle"></i><span>My Account</span></a></li>
+        <li><a class="nav-link" href="/category"><i class="fas fa-user-circle"></i><span>Menu Category</span></a></li>
+        <li class="menu-header">Admin Components</li>
+        <li class="dropdown">
+          <a href="/city-area" class="nav-link"><i class="far fa-handshake"></i><span>Area City List</span></a>
+        </li>
+        <li class="menu-header">Vendor Details</li>
+        <li class="dropdown">
+          <a href="/vendor-list" class="nav-link"><i class="far fa-handshake"></i><span>Vendor List</span></a>
+        </li>
+      </ul>
+    </aside>
+  </div>
+  <div class="main-content">
+    <section class="section">
+        <div class="container mt-2">
+            <h4 class="heading">Dynamic Menu</h4>
+                 <div class="float-right">
+                    <form>
+                       <div class="input-group">
+                            <div class="buttons" style="padding-left: 5px;">
+                              <a (click)="openPopUp(0)" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i>Add New Category</a>
+                            </div>
+                       </div>
+                    </form>
+                 </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 item">
+                    <div class="card item-card card-block" *ngFor ="let cate of categoryList" >
+                        <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
+                        <h2 class="item-card-title mt-3 mb-3">{{cate.category_name}}</h2>
+                        <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions.</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+  <!-- <footer class="main-footer">
+    <div class="footer-left">
+      Copyright &copy; 2020 <div class="bullet"></div> Design By <a href="#">Snkthemes</a>
+    </div>
+    <div class="footer-right">
+    </div>
+  </footer> -->
+  </div>
+  
+  

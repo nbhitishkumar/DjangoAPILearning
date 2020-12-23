@@ -82,4 +82,9 @@ export class AdminApiService {
     let authHeader = this.common.getHttpOptionWithLogin();
     return this.http.get(this.actionUrl + 'backerAdmin/city-list/',  authHeader);
   }
+
+  getAllCategoryList(){
+    let authHeader = this.common.getHttpOptionWithLogin();
+    return this.http.get(this.actionUrl + 'dynamicMenu/seller-category/', authHeader);
+  }
 }
