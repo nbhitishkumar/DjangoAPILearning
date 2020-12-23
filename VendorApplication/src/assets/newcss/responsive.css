@@ -1,0 +1,98 @@
+@media (min-width:1024px) and (max-width:1600px) {
+    .top_steper .steper ul li{ padding:0 5px;font-size: 16px;}
+    .top_steper .steper ul li a{ padding: 0; margin: 0;font-size: 16px;}
+}
+@media (min-width:320px) and (max-width:768px) {
+    .container_middle {
+
+        padding:0 20px;
+        margin: 0 auto;
+        width: 100%; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+    }
+    .nav_fontend .right_secmenu {display: block; float: left;}
+    .login_body {
+
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height:100%;
+        display: block;
+        align-items: center;
+        justify-content: center;}
+        .login_body .loginbox { padding: 0;margin: 0; width:100%;} 
+        .login_body .loginbox .left {padding: 20px 20px 30px 20px; margin: 0;width: 100%;  }
+        .login_body .loginbox .right { padding: 0;margin: 0;width:100%;} 
+
+        .login_body .loginbox .row .loginbottom_text{padding: 5px 0 0 0; margin: 0 0 15px 0; font-size: 15px;}
+        .nav_fontend .right_secmenu ul li {padding: 0; margin: 4px 15px 0 0;}
+        .login_body .loginbox .right .heading {padding: 15px 30px 15px 30px;}
+
+        .logo {width: 140px;}
+        .nav_fontend .right_secmenu.profile_imageblock {padding: 0;}
+        .head_profile_pic {width: 35px;height: 35px;}
+        .nav_fontend {padding: 12px 0;}
+        .common_footer {padding: 12px 15px; position: static;}
+        .common_footer .ligt_bluebtn {padding: 6px 20px;font-size: 16px;line-height: 25px;}
+        .common_footer .transparentbtn {padding: 6px 30px;font-size: 16px;}
+        .onbord_body {padding: 0 0 30px 0;}
+        .common_box {padding: 20px 12px;}
+        .onboardin_heading {padding: 15px 0;}
+        .onboardin_heading h1 {font-size: 22px;}
+        .onboardin_heading p {line-height: 25px;}
+        .onbord_body .social_icnbox {
+            padding:10px 10px;
+            margin: 0;
+            width: 100%;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            background-color: #f4f8f9;
+            float: left;}
+            .onbord_body .social_icnbox ul {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            list-style: none;
+            display: block;
+            align-items: center;
+            justify-content: center;}
+            .onbord_body .social_icnbox ul li {
+            padding: 0 4px;
+            margin: 0 6px 6px 0;
+            height: 45px;
+            background-color: #e2e2e2;
+            float: left;
+            width: auto;
+            border-radius: 4px;
+            font-size: 20px;}
+            .common_box.onbording {margin-bottom: 10px; margin-top: 10px;}
+            .btn_rw {width: 100%;padding-top: 0;float: right;}
+            .btn_rw .whitebtn {padding: 10px 20px;}
+             
+            .social_btn.btngap {margin-right: 4px;}
+            .social_row {padding: 40px 10px 10px 15px;}
+            .social_btn {padding:8px 6px;}
+            .social_btn.gpls {font-size: 15px;}
+            .login_body .loginbox .row .forgetbox .rememberme .mat-checkbox-layout{white-space: pre-wrap;}  
+            .login_body .loginbox .row .forgetbox {padding: 0 0 15px 0;}
+
+}
+
+@media (min-width:769px) and (max-width:1024px) {
+    .container_middle {
+        padding: 0 12px;
+        margin: 0 auto;
+        width: 100%;
+        box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;}
+        .login_body .loginbox {padding: 0;margin: 0;width: 400px; border: #f0eded 1px solid;}
+        login_body .loginbox .left{ background-color: #fff;}
+        .social_btn span img{ width: 20px; height: auto;}
+        .social_btn.btngap {margin-right: 5px;}
+        .social_btn {padding: 6px 8px;margin: 0;}
+        .login_body .loginbox .row .loginbottom_text {padding: 0 0 20px 0;}
+}
+
+@media (min-width:768px) {
+    .common_footer {padding: 12px 15px;position: fixed;}
+    }
+    

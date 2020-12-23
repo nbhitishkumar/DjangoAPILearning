@@ -3,10 +3,9 @@ from rest_framework import generics, permissions, status, views, mixins
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from user.serializers import *
-
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
-
+from sellerMenu.models import *
 import django.db.models
 from django.core.mail import send_mail
 import random
@@ -161,6 +160,62 @@ class SellerProfileUpdateView(generics.ListAPIView):
 
 
 
+# class FileUploadView(mixins.CreateModelMixin, generics.ListAPIView):
+#     permission_classes = (IsAuthenticated,)
+
+#     def post(self, request, *args, **kwargs):
+#         user = request.user
+#         user_id = user.id
+#         file1 = request.FILES['file']  ## Uploaded file
+#         file_type = request.data['file_type']  ## file Type i.e. image / doc / pdf   etc
+#         up_dir = request.data['up_dir']
+#         result_list = {}
+#         new_file_name = ''
+#         full_path_name = ''
+#         upload_status = False
+#         base64_image = ''
+#         if file_type is None:
+#             file_type = "img"
+#         if up_dir is None:
+#             up_dir = "images"
+#         image_name = file1.name
+#         name1 = get_random_string(length=8)
+#         ext = image_name.split('.')[-1]
+#         now = datetime.now().strftime('%Y%m%d-%H%M%S-%f')
+#         uploaded_file_name = now + '.' + ext
+#         #####################################
+#         ## Check File Type (Only 'jpg', 'jpeg', 'gif', 'png','pdf' allowed)
+#         if ext in ['jpg', 'jpeg', 'gif', 'png', 'pdf']:
+#             if not os.path.exists('media/' + str(up_dir) + '/'):
+#                 os.makedirs('media/' + str(up_dir) + '/')
+#             upload_to = 'media/' + str(up_dir) + '/%s' % (uploaded_file_name)
+#             fullpath = settings.BASE_DIR + '/media/' + str(up_dir)
+#             destination = open(upload_to, 'wb+')
+#             for chunk in file1.chunks():
+#                 destination.write(chunk)
+#             destination.close()
+#             obj = User.objects.filter(id=user_id).update(
+#                 profile_image=uploaded_file_name
+#             )
+#             if os.path.exists('media/' + str(up_dir) + '/'):
+#                 base64_image = encode_image_base64(settings.MEDIA_ROOT + '/'+str(up_dir)+'/' + uploaded_file_name)
+#             data = {
+#                 'status': 1,
+#                 'base64_image': base64_image,
+#                 'uploaded_file_name': uploaded_file_name,
+#                 'uploaded_file_url': fullpath,
+#                 'message': 'Uploaded Successfully',
+#             }
+#         else:
+#             data = {
+#                 'status': 0,
+#                 'base64_image': base64_image,
+#                 'uploaded_file_name': '',
+#                 'uploaded_file_url': '',
+#                 'message': 'File extension error',
+#             }
+#         return Response(data)
+
 class FileUploadView(mixins.CreateModelMixin, generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
 
@@ -170,63 +225,6 @@ class FileUploadView(mixins.CreateModelMixin, generics.ListAPIView):
         file1 = request.FILES['file']  ## Uploaded file
         file_type = request.data['file_type']  ## file Type i.e. image / doc / pdf   etc
         up_dir = request.data['up_dir']
-        result_list = {}
-        new_file_name = ''
-        full_path_name = ''
-        upload_status = False
-        base64_image = ''
-        if file_type is None:
-            file_type = "img"
-        if up_dir is None:
-            up_dir = "images"
-        image_name = file1.name
-        name1 = get_random_string(length=8)
-        ext = image_name.split('.')[-1]
-        now = datetime.now().strftime('%Y%m%d-%H%M%S-%f')
-        uploaded_file_name = now + '.' + ext
-        #####################################
-        ## Check File Type (Only 'jpg', 'jpeg', 'gif', 'png','pdf' allowed)
-        if ext in ['jpg', 'jpeg', 'gif', 'png', 'pdf']:
-            if not os.path.exists('media/' + str(up_dir) + '/'):
-                os.makedirs('media/' + str(up_dir) + '/')
-            upload_to = 'media/' + str(up_dir) + '/%s' % (uploaded_file_name)
-            fullpath = settings.BASE_DIR + '/media/' + str(up_dir)
-            destination = open(upload_to, 'wb+')
-            for chunk in file1.chunks():
-                destination.write(chunk)
-            destination.close()
-            obj = User.objects.filter(id=user_id).update(
-                profile_image=uploaded_file_name
-            )
-            if os.path.exists('media/' + str(up_dir) + '/'):
-                base64_image = encode_image_base64(settings.MEDIA_ROOT + '/'+str(up_dir)+'/' + uploaded_file_name)
-            data = {
-                'status': 1,
-                'base64_image': base64_image,
-                'uploaded_file_name': uploaded_file_name,
-                'uploaded_file_url': fullpath,
-                'message': 'Uploaded Successfully',
-            }
-        else:
-            data = {
-                'status': 0,
-                'base64_image': base64_image,
-                'uploaded_file_name': '',
-                'uploaded_file_url': '',
-                'message': 'File extension error',
-            }
-        return Response(data)
-
-class FileUploadView(mixins.CreateModelMixin, generics.ListAPIView):
-    permission_classes = (IsAuthenticated,)
-
-    def post(self, request, *args, **kwargs):
-        user = request.user
-        user_id = user.id
-        file1 = request.FILES['file']  ## Uploaded file
-        file_type = request.data['file_type']  ## file Type i.e. image / doc / pdf   etc
-        up_dir = request.data['up_dir']
-        print(up_dir)
         result_list = {}
         new_file_name = ''
         full_path_name = ''

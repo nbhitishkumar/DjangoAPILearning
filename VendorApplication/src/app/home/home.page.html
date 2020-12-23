@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+  <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+        <h3>Home Baker's Kitchen</h3>
+      </label>
+       <span class="img-user-block">
+        <img _ngcontent-c6="" class="img-fluid img-circle" [src]=profileImage width="50px">
+        <a href="" class="logout"><i class="fas fa-power-off"></i></a>
+      </span>
+    </header>
+    <!--sidebar start-->
+    <div class="sidebar">
+      <a href="/home/dashboard"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      <a href="/home/profile"><i class="fas fa-table"></i><span>Account</span></a>
+      <a href="#"><i class="fas fa-cogs"></i><span>My Store </span></a>
+      <a href="#"><i class="fas fa-th"></i><span>New Orders</span></a>
+      <a href="#"><i class="fas fa-info-circle"></i><span>Orders Summary</span></a>
+      <a href="#"><i class="fas fa-table"></i><span>Subscription</span></a>
+      <a href="#"><i class="fas fa-sliders-h"></i><span>Payment Summary</span></a>
+    </div>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+      <a href="https://api.whatsapp.com/send?phone=+919471476916&text=hi" class="float" target="_blank">
+    <i class="fa fa-whatsapp my-float"></i>
+    </a>
+</ion-content>

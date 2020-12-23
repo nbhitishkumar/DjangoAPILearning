@@ -10,6 +10,7 @@ from sellerMenu.webservice import seller_menu_view
 urlpatterns = [
     ##### Category Management #####
     url(r'^seller-category/$', seller_menu_view.SellerCategoryMenuView.as_view(), name='seller-category'),
+    
 
 
     #### Item Management   #####

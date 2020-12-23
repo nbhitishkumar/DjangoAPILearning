@@ -16,7 +16,9 @@ from user.utils import SoftDeleteManager
 class SellerCategory(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_category')
     category_name = models.CharField(max_length=255, blank=True, null=True)
+    category_des = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(default=datetime.now, blank=True)
+    category_image = models.CharField(max_length=225, blank=True, null=True)
     modified_date = models.DateTimeField(default=datetime.now, blank=True)
     is_deleted = models.BooleanField(default=False)
 
