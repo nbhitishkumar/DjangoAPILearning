@@ -49,3 +49,7 @@ img {
 .card:focus::after {
 	transform: scale3d(1, 1, 1);
 }
+
+.image-upload>input {
+	display: none;
+  }

@@ -36,8 +36,12 @@
            <div class="col-12 col-md-6 col-lg-3" *ngFor ="let cate of categoryList">
               <div class="card card-primary"  >
                  <div class="card-header">
-                    <img src="assets/img/image.png" alt="Quick Cakes">
-                    <a (click)="editCategory(cate.id)" class="btn btn-icon"><i class="fas fa-edit"></i></a>
+                  <div class="image-upload">
+                     <label for="file-input">
+                        <img [src]=categoryImage alt="Quick Cakes">
+                     </label>
+                     <input id="file-input" (change)="uploadImage($event)" type="file" />
+                  </div>
                  </div>
                  <div class="card-body">
                     <h2 class="item-card-title mt-3 mb-3">{{cate.category_name}}</h2>

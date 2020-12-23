@@ -22,6 +22,7 @@ export class CommonService {
   aadharBackImage: string;
   gitinCertificateImg : string;
   fssaiCertificateImg : string;
+  categoryImage: string;
   public tokenPairOverwriteObservable = new Subject<any>();
   public tokenOverwriteCallBackResult$ = this.tokenPairOverwriteObservable.asObservable();
   public profileImageObservable = new Subject<any>();
@@ -38,6 +39,10 @@ export class CommonService {
   public gstinCertificateCallBackResult$ = this.gstinCertificateObservable.asObservable();
   public fssaiCertificateObservable = new Subject<any>();
   public fssaiCertificateCallBackResult$ = this.fssaiCertificateObservable.asObservable();
+
+  public categoryImageObservable = new Subject<any>();
+  public categoryImageCallBackResult$ = this.categoryImageObservable.asObservable();
+
   constructor(private http: HttpClient,
               private _configuration: ConfigurationService,
               private sanitizer:DomSanitizer,
@@ -188,5 +193,16 @@ export class CommonService {
 			verticalPosition: 'top',
 			horizontalPosition: 'center'
 		});
-	}
+  }
+  
+
+  setCategoryImage(encodedImage){
+    let userData = JSON.parse(localStorage.getItem('userLoginData'));
+		let imageBinary = encodedImage; //image binary data response from api
+		this.imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + imageBinary);
+		this.categoryImage = this.imageUrl;
+    userData.cat_image = this.imageUrl;
+    console.log(userData)
+		this.fssaiCertificateObservable.next(true);
+  }
 }

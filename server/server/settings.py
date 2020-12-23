@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'user',
     'bakerAdmin',
-    'sellerMenu'
+    'sellerMenu',
+    'common'
 ]
 
 MIDDLEWARE = [

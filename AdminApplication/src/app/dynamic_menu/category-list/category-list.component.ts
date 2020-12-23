@@ -13,6 +13,7 @@ import { AddEditCategoryComponent } from 'src/app/dynamic_menu/add-edit-category
 })
 export class CategoryListComponent implements OnInit {
   categoryList: any;
+  categoryImage = 'assets/img/image.png';
 
   constructor(
     private common: CommonService,
@@ -20,7 +21,14 @@ export class CategoryListComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private adminservice: AdminApiService
-  ) { }
+  ) { 
+    this.common.categoryImageCallBackResult$.subscribe(value =>{
+		  if(value){
+      this.categoryImage = this.common.categoryImage;
+      console.log(this.categoryImage)
+		  }
+		});
+  }
 
   ngOnInit(): void {
     this.categoryList =[];
@@ -31,6 +39,10 @@ export class CategoryListComponent implements OnInit {
       res => {
         if(res['status'] == 1){
           this.categoryList = res['category_details'];
+          console.log(this.categoryList)
+          if(this.categoryList.category_image !=''){
+            this.common.setCategoryImage(this.categoryList[0].category_image);
+          }
         }
       },
       err => {
@@ -66,6 +78,54 @@ export class CategoryListComponent implements OnInit {
         this.getCategoryList();
       });
   }
+
+
+  uploadImage(event) {
+    var files: any = {};
+    var target: HTMLInputElement = event.target as HTMLInputElement;
+    let fileType = target.files[0].type;
+    files = target.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(target.files[0]);
+    if (target.files[0].type === "image/jpeg" ||
+      target.files[0].type === "image/jpg" ||
+      target.files[0].type === "image/png") {
+        this.saveImage(files, fileType);
+      } else {
+      }
+  }
+  
+  saveImage(file, file_type) {
+    var form_data = new FormData();
+    form_data.append("file", file);
+    form_data.append('file_type', file_type);
+    form_data.append('up_dir', 'category_image');
+  
+    this.userservice.uploadProfileImage(form_data).subscribe(
+      res => {
+        if(res['status']==1) {
+      this.common.setCategoryImage(res['base64_image']);
+          setTimeout(() => {
+            // this.imageLoader = false;
+          });
+        } else {
+        alert('Image is not upload')
+          // this.cs.openSnackBar(res['message'],'');
+          setTimeout(() => {
+            // this.imageLoader = false;
+          });
+        }
+      },
+      err => {
+        // this.cs.openSnackBar('ERROR IN FILE UPLOAD, PLEASE TRY AGAIN LATER.','');
+        console.log(err)
+      }
+  
+    );
+  }
+
+
+
 
 
 

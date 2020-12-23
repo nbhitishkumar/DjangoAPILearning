@@ -278,6 +278,10 @@ class FileUploadView(mixins.CreateModelMixin, generics.ListAPIView):
                 obj = User.objects.filter(id=user_id).update(
                 fssai_image =uploaded_file_name
                 )
+            elif up_dir == 'category_image':
+                obj = SellerCategory.objects.filter(id=user_id).update(
+                category_image =uploaded_file_name
+                )
             if os.path.exists('media/' + str(up_dir) + '/'):
                 base64_image = encode_image_base64(settings.MEDIA_ROOT + '/'+str(up_dir)+'/' + uploaded_file_name)
             data = {

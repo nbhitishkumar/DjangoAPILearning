@@ -28,7 +28,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ShowImageComponent } from './vendors/show-image/show-image.component';
 import { AddEditCategoryComponent } from './dynamic_menu/add-edit-category/add-edit-category.component';
 import { CategoryListComponent } from './dynamic_menu/category-list/category-list.component';
-import { AgmDrawingModule } from '@agm/drawing'
+import { AgmDrawingModule } from '@agm/drawing';
+import { CommentBoxComponent } from './common/comment-box/comment-box.component'
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { AgmDrawingModule } from '@agm/drawing'
     ShowImageComponent,
     AddEditCategoryComponent,
     CategoryListComponent,
+    CommentBoxComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ import { AgmDrawingModule } from '@agm/drawing'
     AddCityComponent,
     AddStateComponent,
     ShowImageComponent,
-    AddEditCategoryComponent
+    AddEditCategoryComponent, 
+    CommentBoxComponent
   ],
   providers: [
     CommonService,

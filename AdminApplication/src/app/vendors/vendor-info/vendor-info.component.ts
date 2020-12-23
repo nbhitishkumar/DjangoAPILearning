@@ -5,6 +5,7 @@ import { AdminApiService } from 'src/app/services/admin-api/admin-api.service';
 import { CommonService } from 'src/app/services/common/common.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CommentBoxComponent } from 'src/app/common/comment-box/comment-box.component';
 
 @Component({
   selector: 'app-vendor-info',
@@ -243,6 +244,22 @@ export class VendorInfoComponent implements OnInit {
         console.log('afterClosed', result);
         // this.getServiceList();
       });
+  }
+
+  commentdialogRefTags : MatDialogRef<CommentBoxComponent> | null;
+  CommentBox(list_id){
+    this.commentdialogRefTags = this.dialog.open(CommentBoxComponent, {
+      data: {
+        id: list_id,
+        // image: this.gitinCertificateImg
+      },
+        disableClose: true,
+      });
+      this.commentdialogRefTags.afterClosed().subscribe(result => {
+        console.log('afterClosed', result);
+        // this.getServiceList();
+      });
+
   }
 
 
