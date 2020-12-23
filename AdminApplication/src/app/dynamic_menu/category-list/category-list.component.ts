@@ -4,6 +4,7 @@ import { CommonService } from 'src/app/services/common/common.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user/user.service';
 import { AdminApiService } from 'src/app/services/admin-api/admin-api.service';
+import { AddEditCategoryComponent } from 'src/app/dynamic_menu/add-edit-category/add-edit-category.component';
 
 @Component({
   selector: 'app-category-list',
@@ -37,5 +38,35 @@ export class CategoryListComponent implements OnInit {
       },
     );
   }
+  
+  dialogRefTags : MatDialogRef<AddEditCategoryComponent> | null;
+  addCategory(list_id){
+    this.dialogRefTags = this.dialog.open(AddEditCategoryComponent, {
+      data: {
+        id: list_id
+      },
+        disableClose: true,
+      });
+      this.dialogRefTags.afterClosed().subscribe(result => {
+        console.log('afterClosed', result);
+        this.getCategoryList();
+      });
+  }
+
+  editdialogRefTags : MatDialogRef<AddEditCategoryComponent> | null;
+  editCategory(list_id){
+    this.editdialogRefTags = this.dialog.open(AddEditCategoryComponent, {
+      data: {
+        id: list_id
+      },
+        disableClose: true,
+      });
+      this.editdialogRefTags.afterClosed().subscribe(result => {
+        console.log('afterClosed', result);
+        this.getCategoryList();
+      });
+  }
+
+
 
 }

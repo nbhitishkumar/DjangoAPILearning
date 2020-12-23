@@ -113,6 +113,28 @@ class SellerCategoryMenuView(generics.ListAPIView):
         return JsonResponse(response, status=http_status_code)
 
 
+
+class CategoryDetailsByidView(APIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self,request):
+        user = request.user
+        user_id = user.id
+        responce_data = {}
+        requestData = request.data
+        rs=SellerCategory.objects.filter(user_id=user_id, id=requestData['category_id'], is_deleted=False)
+        if rs:
+            serializer = SellerCategorySerializer(rs, many=True)
+            responce_data['status'] = 1
+            responce_data['massage'] = 'category details'
+            responce_data['category'] = serializer.data
+            return JsonResponse(responce_data, status=200)
+        else:
+            responce_data['status'] = 0
+            responce_data['massage'] = 'This category is not present in our database'
+            responce_data['category'] = []
+            return JsonResponse(responce_data, status=200)
+
+
 class SellerItemMenuView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
 

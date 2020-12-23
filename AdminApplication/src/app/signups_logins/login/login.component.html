@@ -14,9 +14,6 @@
             <div class="card-body">
               <form [formGroup]="userLogin" (ngSubmit)="LogIn()" class="login-form">
                 <div class="form-group">
-                  <!-- <mat-error *ngIf="email.hasError('required')">
-                    <strong>*</strong>
-                  </mat-error> -->
                   <input type="email" matInput class="form-control" matInput placeholder="Email" [formControl]="email">
                 </div>
                 <div class="form-group">

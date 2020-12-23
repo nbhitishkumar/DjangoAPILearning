@@ -26,8 +26,8 @@ import { MatInputModule } from '@angular/material/input';
 import { AgmCoreModule } from '@agm/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ShowImageComponent } from './vendors/show-image/show-image.component';
-import { AddEditCategoryComponent } from './admin/add-edit-category/add-edit-category.component';
-import { CategoryListComponent } from './admin/category-list/category-list.component';
+import { AddEditCategoryComponent } from './dynamic_menu/add-edit-category/add-edit-category.component';
+import { CategoryListComponent } from './dynamic_menu/category-list/category-list.component';
 import { AgmDrawingModule } from '@agm/drawing'
 
 

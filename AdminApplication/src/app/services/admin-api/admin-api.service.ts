@@ -87,4 +87,21 @@ export class AdminApiService {
     let authHeader = this.common.getHttpOptionWithLogin();
     return this.http.get(this.actionUrl + 'dynamicMenu/seller-category/', authHeader);
   }
+
+
+  saveCategory(reqData,){
+    let authHeader = this.common.getHttpOptionWithLogin();
+    return this.http.post(this.actionUrl + 'dynamicMenu/seller-category/', reqData, authHeader);
+  }
+
+  updateCategory(reqData,){
+    let authHeader = this.common.getHttpOptionWithLogin();
+    return this.http.put(this.actionUrl + 'dynamicMenu/seller-category/', reqData, authHeader);
+  }
+
+
+  getCategoryDeatilsById(reqData,){
+    let authHeader = this.common.getHttpOptionWithLogin();
+    return this.http.post(this.actionUrl + 'dynamicMenu/seller-categoryByid/',  reqData, authHeader);
+  }
 }

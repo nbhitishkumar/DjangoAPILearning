@@ -14,8 +14,6 @@ User = get_user_model()
 
 
 class SellerCategorySerializer(serializers.ModelSerializer):
-    category_name = serializers.CharField(required=True, allow_blank=False, max_length=200)
-
     class Meta:
         model = SellerCategory
         fields = "__all__"

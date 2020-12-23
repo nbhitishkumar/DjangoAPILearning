@@ -1,4 +1,4 @@
-import { CategoryListComponent } from './admin/category-list/category-list.component';
+import { CategoryListComponent } from './dynamic_menu/category-list/category-list.component';
 import { CityAreaComponent } from './admin/city-area/city-area.component';
 import { VendorListComponent } from './vendors/vendor-list/vendor-list.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
