@@ -134,6 +134,34 @@ class CategoryDetailsByidView(APIView):
             responce_data['category'] = []
             return JsonResponse(responce_data, status=200)
 
+class DeleteCategory(APIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self,request):
+        user = request.user
+        user_id = user.id
+        requestdata = request.data
+        response = {}
+        rs = User.objects.filter(id=user_id,is_superuser=True, is_active=True, is_blocked=False, is_deleted=False).first()
+        if rs:
+            check_category = SellerCategory.objects.filter(id=requestdata['category_id'], is_deleted=False)
+            if check_category:
+                obj = SellerCategory.objects.filter(id=requestdata['category_id']).update(
+                    is_deleted=requestdata['is_deleted'],
+                    modified_date=timezone.now(),
+                )
+                response['status'] = 1
+                response['msg'] = 'Category Name Deleted'
+                http_status_code = 201
+            else:
+                response['status'] = 0
+                response['msg'] = 'Category Not Found'
+                http_status_code = 404
+        else:
+            response['status'] = 0
+            response['msg'] = 'User Not Found'
+            http_status_code = 404
+        return JsonResponse(response, status=http_status_code)
+
 
 class SellerItemMenuView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
@@ -186,28 +214,28 @@ class SellerItemMenuView(generics.ListAPIView):
 
 
 
-class SellerItemList(generics.ListAPIView):
-    permission_classes = (IsAuthenticated,)
+# class SellerItemList(generics.ListAPIView):
+#     permission_classes = (IsAuthenticated,)
 
-    def get(self, request, format=None):
-        user = request.user
-        user_id = user.id
-        response_data = {}
-        rs = SellerItem.objects.filter(user_id=user_id, is_deleted=False)
-        if rs:
-            item_serialize = SellerItemSerializer(rs, many=True)
-            for details in item_serialize.data:
-                category_name = details['category_name']
-            response_data['status'] = 1
-            response_data['msg'] = 'Successfully get seller details'
-            response_data['item_details'] = item_serialize.data
-            http_status_code = 200
-        else:
-            response_data['status'] = 0
-            response_data['msg'] = 'No data found'
-            response_data['item_details'] = []
-            http_status_code = 404
-        return Response(response_data, status=http_status_code)
+#     def get(self, request, format=None):
+#         user = request.user
+#         user_id = user.id
+#         response_data = {}
+#         rs = SellerItem.objects.filter(user_id=user_id, is_deleted=False)
+#         if rs:
+#             item_serialize = SellerItemSerializer(rs, many=True)
+#             for details in item_serialize.data:
+#                 category_name = details['category_name']
+#             response_data['status'] = 1
+#             response_data['msg'] = 'Successfully get seller details'
+#             response_data['item_details'] = item_serialize.data
+#             http_status_code = 200
+#         else:
+#             response_data['status'] = 0
+#             response_data['msg'] = 'No data found'
+#             response_data['item_details'] = []
+#             http_status_code = 404
+#         return Response(response_data, status=http_status_code)
 
 
 

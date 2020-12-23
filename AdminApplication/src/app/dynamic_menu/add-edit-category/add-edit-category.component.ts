@@ -72,7 +72,7 @@ export class AddEditCategoryComponent implements OnInit {
   closePopup() {
     this.dialogRef.close();
   }
-  
+
   saveCategory(){
     if(this.addCategory.valid){
       const formData: any = {
@@ -98,7 +98,6 @@ export class AddEditCategoryComponent implements OnInit {
       }
       if(this.category_id !=0){
         formData['category_id'] = this.category_id;
-        console.log('Set', formData);
         this.adminservice.updateCategory(formData).subscribe(
           res => {
             if(res['status'] == 1){
