@@ -1,0 +1,202 @@
+<div class="main-sidebar sidebar-style-2">
+  <aside id="sidebar-wrapper">
+    <div class="sidebar-brand">
+      <a >
+        <img alt="image" src="assets/img/logo.png" class="header-logo" />
+        <!-- <span class="logo-name">Home Baker's Kitchen</span> -->
+      </a>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="dropdown">
+        <a href="/dashboard" class="nav-link"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      </li>
+      <li><a class="nav-link" href="/profile"><i class="fas fa-user-circle"></i><span>My Account</span></a></li>
+      <li class="menu-header">Admin Components</li>
+      <li class="dropdown">
+        <a href="/city-area" class="nav-link"><i class="far fa-handshake"></i><span>Area City List</span></a>
+      </li>
+      <li class="menu-header">Vendor Details</li>
+      <li class="dropdown  active">
+        <a href="/vendor-list" class="nav-link"><i class="far fa-handshake"></i><span>Vendor List</span></a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div class="main-content">
+  <section class="section">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Owner Name:</label>{{vendorDetails.owner_name}}
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Shop Name:</label>{{vendorDetails.shop_name}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Email:</label>{{vendorDetails.email}}
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Mobile No.:</label>{{vendorDetails.phone_no}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Username:</label>{{vendorDetails.username}}
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Address:</label>{{vendorDetails.address}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Shop Landmark:</label>{{vendorDetails.shop_landmark}}
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Building/Mall</label>{{vendorDetails.mall_name}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Shop Floor No.:</label>{{vendorDetails.pin_code}}
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Shop City:</label>{{vendorDetails.shop_city}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Shop State:</label>{{vendorDetails.state}}
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Pin Code</label>{{vendorDetails.pin_code}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">GSTIN Number:</label>{{vendorDetails.gstin_number}}
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Registration Date:</label>{{vendorDetails.registration_date | date:'yyyy-MM-dd'}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">GSTIN State:</label>{{vendorDetails.gst_state}}
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">GSTIN Type</label>{{vendorDetails.gst_type}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">FSSAI Number:</label>{{vendorDetails.fssai_number}}
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">FSSAI Registered Name</label>{{vendorDetails.fssai_reg_name}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">FSSAI Expiry Date:</label>{{vendorDetails.fssai_exp_date | date:'yyyy-MM-dd'}}
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">FSSAI Address</label>{{vendorDetails.fssai_address}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Owner Image</label>
+              <img class="m-x-auto img-fluid img-circle" width="70px" [src]=ownerImage (click)="ownerVImage(0)">
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Shop Image</label>
+              <img class="m-x-auto img-fluid img-circle" width="70px" [src]=shopImage (click)="shopVImage(0)">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">Aadhar card</label>
+              <img class="m-x-auto img-fluid img-circle" width="70px" [src]=aadharFrontImage style="padding-right: 5px;" (click)="showFrontImage(0)">
+              <img class="m-x-auto img-fluid img-circle" width="70px" [src]=aadharBackImage (click)="showBackImage(0)">
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <div class="form-group">
+            <label style="color: blue; padding-right: 10px;">GSTIN Certificate</label>
+            <img class="m-x-auto img-fluid img-circle" width="70px" [src]=gitinCertificateImg (click)="showGstin(0)">
+          </div>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="form-group">
+              <label style="color: blue; padding-right: 10px;">FSSAI Certificate</label>
+              <img class="m-x-auto img-fluid img-circle" width="70px" [src]=fssaiCertificateImg (click)="showFssai(0)">
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="buttons" style="align-items: center; margin-right: auto;margin-left: auto; margin-left: 40%;">
+          <a (click)="Approve()" class="btn btn-icon icon-left btn-success" style="color: black;"><i class="fas fa-check"></i> Approve</a>
+          <a (click)="Decline()" class="btn btn-icon icon-left btn-primary" style="color: black;"><i class="fas fa-times"></i> Decline</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- <footer class="main-footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 <div class="bullet"></div> Design By <a href="#">Snkthemes</a>
+  </div>
+  <div class="footer-right">
+  </div>
+</footer> -->
+</div>

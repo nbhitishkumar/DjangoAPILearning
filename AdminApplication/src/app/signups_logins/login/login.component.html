@@ -1,0 +1,48 @@
+<div class="loader"></div>
+<div id="app">
+  <section class="section">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+          <div class="login-brand login-brand-color">
+            <img alt="image" width="100px" src="assets/img/logo.png" />
+          </div>
+          <div class="card card-auth">
+            <div class="card-header card-header-auth">
+              <h4 style="text-align: center; margin-left: auto;margin-right: auto;">Admin Login</h4>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="userLogin" (ngSubmit)="LogIn()" class="login-form">
+                <div class="form-group">
+                  <!-- <mat-error *ngIf="email.hasError('required')">
+                    <strong>*</strong>
+                  </mat-error> -->
+                  <input type="email" matInput class="form-control" matInput placeholder="Email" [formControl]="email">
+                </div>
+                <div class="form-group">
+                  <input [type]="show ? 'text' : 'password'" class="form-control" matInput placeholder="Password" [formControl]="password">
+                </div>
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+                    <label class="custom-control-label" for="remember-me">Remember Me</label>
+                    <div class="float-right">
+                      <a href="auth-forgot-password.html" class="text-small">
+                        Forgot Password?
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" style="font-size: 20px;" class="btn btn-lg btn-block btn-auth-color"><i class="fas fa-sign-in-alt"></i>
+                    Login
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

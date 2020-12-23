@@ -1,0 +1,44 @@
+<div class="text-right"><a href="javascript:void(0)" (click)="closePopup()" >X</a></div>
+  <h3 class="text-center">{{ pageTitle }}</h3>
+<div class="card-body mt-3 mb-5">
+  <form [formGroup]="addServiceSetup" (ngSubmit)="saveArea()">
+    <div class="form-group">
+      <mat-form-field>
+        <mat-select placeholder="State Name" [formControl]="stateName" class="form-control inputtags" (selectionChange)="onSelection($event)">
+          <mat-option *ngFor="let state of stateList" [value]=state.id>{{state.state_name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="stateName.hasError('required')">
+          Please select <strong>State</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="padding-left: 10px;">
+        <mat-select placeholder="City Name" [formControl]="cityName" class="form-control inputtags">
+          <mat-option *ngFor="let city of cityList" [value]=city.id>{{city.city_name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="cityName.hasError('required')">
+          Please select <strong>City</strong>
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="Area Name" class="form-control inputtags" [formControl]="areaName">
+        <mat-error *ngIf="areaName.hasError('required')">
+          Area name is
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field >
+      <mat-form-field style="padding-left: 10px;">
+        <input matInput placeholder="Pin Code" class="form-control inputtags" [formControl]="pinCode">
+        <mat-error *ngIf="pinCode.hasError('required')">
+          Pin code is
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="buttons" style="padding-left: 5px;">
+      <button class="btn btn-icon icon-left btn-primary">{{buttonText}}</button>
+    </div>
+  </form>
+</div>

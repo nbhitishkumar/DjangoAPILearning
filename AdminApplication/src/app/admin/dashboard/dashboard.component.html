@@ -1,0 +1,40 @@
+<div class="main-sidebar sidebar-style-2">
+  <aside id="sidebar-wrapper">
+    <div class="sidebar-brand">
+      <a >
+        <!-- <img alt="image" width="60px" height="60px" src="assets/img/logo.png" class="header-logo" /> -->
+        <!-- <span>Home Baker's Kitchen</span> -->
+      </a>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="dropdown active">
+        <a href="/dashboard" class="nav-link"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      </li>
+      <li><a class="nav-link" href="/profile"><i class="fas fa-user-circle"></i><span>My Account</span></a></li>
+      <li class="menu-header">Admin Components</li>
+      <li class="dropdown">
+        <a href="/city-area" class="nav-link"><i class="far fa-handshake"></i><span>Area City List</span></a>
+      </li>
+      <li class="menu-header">Vendor Details</li>
+      <li class="dropdown">
+        <a href="/vendor-list" class="nav-link"><i class="far fa-handshake"></i><span>Vendor List</span></a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div class="main-content">
+  <section class="section">
+    <agm-map style="height: 300px" [latitude]="51.673858" [longitude]="7.815982" [agmDrawingManager]="drawing">
+    </agm-map>
+    <agm-drawing-manager #drawing="agmDrawingManager" [drawingMode]="'circle'" [circleOptions]="{fillColor:'red', radius: 150}"></agm-drawing-manager>
+  </section>
+
+<!-- <footer class="main-footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 <div class="bullet"></div> Design By <a href="#">Snkthemes</a>
+  </div>
+  <div class="footer-right">
+  </div>
+</footer> -->
+</div>
+
