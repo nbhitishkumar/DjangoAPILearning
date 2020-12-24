@@ -104,8 +104,15 @@ export class AdminApiService {
     let authHeader = this.common.getHttpOptionWithLogin();
     return this.http.post(this.actionUrl + 'dynamicMenu/seller-categoryByid/',  reqData, authHeader);
   }
-  commentOnReg(reqData,){
+
+
+  getCategoryName(reqData,){
     let authHeader = this.common.getHttpOptionWithLogin();
-    return this.http.put(this.actionUrl + 'backerAdmin/comment-reg/',  reqData, authHeader);
+    return this.http.post(this.actionUrl + 'dynamicMenu/seller-categoryName/',  reqData, authHeader);
+  }
+
+  getItemDeatilsById(reqData,){
+    let authHeader = this.common.getHttpOptionWithLogin();
+    return this.http.post(this.actionUrl + 'dynamicMenu/seller-itemlistById/',  reqData, authHeader);
   }
 }

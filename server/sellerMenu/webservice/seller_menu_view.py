@@ -138,6 +138,28 @@ class CategoryDetailsByidView(APIView):
             print(responce_data)
             return JsonResponse(responce_data, status=200)
 
+class CategoryNameById(APIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self,request):
+        user = request.user
+        user_id = user.id
+        responce_data = {}
+        requestData = request.data
+        rs=User.objects.filter(id=user_id, is_deleted=False)
+        if rs:
+            categoryName = SellerCategory.objects.filter(id=requestData['category_id'])
+            serializer = SellerCategoryNameSerializer(categoryName, many=True)
+            responce_data['status'] = 1
+            responce_data['massage'] = 'category details'
+            responce_data['category'] = serializer.data
+            return JsonResponse(responce_data, status=200)
+        else:
+            responce_data['status'] = 0
+            responce_data['massage'] = 'This category is not present in our database'
+            responce_data['category'] = []
+            print(responce_data)
+            return JsonResponse(responce_data, status=200)
+
 
 class DeleteCategory(APIView):
     permission_classes = (IsAuthenticated,)
@@ -176,16 +198,16 @@ class SellerItemMenuView(generics.ListAPIView):
         user = request.user
         user_id = user.id
         requestdata = request.data
-        rs = User.objects.filter(id=user_id, is_active=True, is_blocked=False, is_deleted=False).first()
+        rs = User.objects.filter(id=user_id, user_type=2, is_active=True, is_blocked=False, is_deleted=False).first()
         if rs:
             if rs.is_shop_verified:
-                category_data = SellerItem.objects.filter(category_id=requestdata['category_id'], is_deleted=False)
+                category_data = SellerCategory.objects.filter(id=requestdata['category_id'], is_deleted=False)
                 if category_data:
                     check_itemName = SellerItem.objects.filter(item_name=requestdata['item_name'],
                                                                is_deleted=False).count()
                     if check_itemName:
                         response_data['status'] = 0
-                        response_data['msg'] = 'Category Already Added'
+                        response_data['msg'] = 'Item Already Added'
                         http_status_code = 404
                     else:
                         obj = SellerItem.objects.create(
@@ -195,18 +217,18 @@ class SellerItemMenuView(generics.ListAPIView):
                             item_description=requestdata['item_description'],
                             item_preparing_time=requestdata['item_preparing_time'],
                             item_delivery_time=requestdata['item_delivery_time'],
-                            created_date=timezone.now(),
-                            modified_date=timezone.now(),
                             category_id=requestdata['category_id'],
-                            item_image=requestdata
                         )
                         response_data['status'] = 1
                         response_data['msg'] = 'New Item Added'
                         http_status_code = 200
-
+                else:
+                    response_data['status'] = 0
+                    response_data['msg'] = 'Category Not Found'
+                    http_status_code = 404
             else:
-                response_data['status'] = 1
-                response_data['msg'] = 'User Found'
+                response_data['status'] = 0
+                response_data['msg'] = 'Shop Not Verified'
                 http_status_code = 404
         else:
             response_data['status'] = 0
@@ -215,37 +237,111 @@ class SellerItemMenuView(generics.ListAPIView):
         return Response(response_data, status=http_status_code)
 
 
-#### Get List of all Seller Category
+
+# def uploadFile(id, fileName, filetype, dir):
+#     file1 = fileName
+#     file_type = filetype
+#     up_dir = dir
+#     result_list = {}
+#     new_file_name = ''
+#     full_path_name = ''
+#     upload_status = False
+#     base64_image = ''
+#     if file_type is None:
+#         file_type = "img"
+#     if up_dir is None:
+#         up_dir = "images"
+#     image_name = file1.name
+#     name1 = get_random_string(length=8)
+#     ext = image_name.split('.')[-1]
+#     now = datetime.now().strftime('%Y%m%d-%H%M%S-%f')
+#     uploaded_file_name = now + '.' + ext
+#     #####################################
+#     ## Check File Type (Only 'jpg', 'jpeg', 'gif', 'png','pdf' allowed)
+#     if ext in ['jpg', 'jpeg', 'png']:
+#         if not os.path.exists('media/' + str(up_dir) + '/'):
+#             os.makedirs('media/' + str(up_dir) + '/')
+#         upload_to = 'media/' + str(up_dir) + '/%s' % (uploaded_file_name)
+#         fullpath = settings.BASE_DIR + '/media/' + str(up_dir)
+#         destination = open(upload_to, 'wb+')
+#         for chunk in file1.chunks():
+#             destination.write(chunk)
+#         destination.close()
+#         if up_dir == 'item_image':
+#             obj = SellerItem.objects.filter(id=id).update(
+#             item_image=uploaded_file_name
+#             )
+#         if os.path.exists('media/' + str(up_dir) + '/'):
+#             base64_image = encode_image_base64(settings.MEDIA_ROOT + '/'+str(up_dir)+'/' + uploaded_file_name)
+#         data = {
+#             'status': 1,
+#             'base64_image': base64_image,
+#             'uploaded_file_name': uploaded_file_name,
+#             'uploaded_file_url': fullpath,
+#             'message': 'Uploaded Successfully',
+#         }
+#         return data
+#     else:
+#         data = {
+#             'status': 0,
+#             'base64_image': base64_image,
+#             'uploaded_file_name': '',
+#             'uploaded_file_url': '',
+#             'message': 'File extension error',
+#         }
+#         return data
+
+
+def encode_image_base64(full_path):
+    image = ''
+    if full_path != "":
+        with open(full_path, 'rb') as imgFile:
+            image = base64.b64encode(imgFile.read())
+    return image
+    
+    # def put(self, request)
+
+
+#### admin works
+class SellerItemListbyId(generics.ListAPIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, format=None):
+        user = request.user
+        user_id = user.id
+        requestdata = request.data
+        response_data = {}
+        item_image_name = ''
+        rs = User.objects.filter(id=user_id,is_deleted=False)
+        if rs:
+            item_list = SellerItem.objects.filter(category=requestdata['category_id'])
+            item_serialize = SellerItemSerializer(item_list, many=True)
+            for details in item_serialize.data:
+                print()
+            # for details in item_serialize.data:
+            #     item_image_name = details['item_image']
+            #     if item_image_name is not None:
+            #         if os.path.exists('media/item_image/' + item_image_name):
+            #             base64_image = encode_image_base64(settings.MEDIA_ROOT + '/item_image/' + item_image_name)
+            #             details['item_image'] = base64_image
+            response_data['status'] = 1
+            response_data['msg'] = 'Successfully get seller details'
+            response_data['item_details'] = item_serialize.data
+            http_status_code = 200
+        else:
+            response_data['status'] = 0
+            response_data['msg'] = 'No data found'
+            response_data['item_details'] = []
+            http_status_code = 404
+        return Response(response_data, status=http_status_code)
 
 
 
-# class SellerItemList(generics.ListAPIView):
-#     permission_classes = (IsAuthenticated,)
-
-#     def get(self, request, format=None):
-#         user = request.user
-#         user_id = user.id
-#         response_data = {}
-#         rs = SellerItem.objects.filter(user_id=user_id, is_deleted=False)
-#         if rs:
-#             item_serialize = SellerItemSerializer(rs, many=True)
-#             for details in item_serialize.data:
-#                 category_name = details['category_name']
-#             response_data['status'] = 1
-#             response_data['msg'] = 'Successfully get seller details'
-#             response_data['item_details'] = item_serialize.data
-#             http_status_code = 200
-#         else:
-#             response_data['status'] = 0
-#             response_data['msg'] = 'No data found'
-#             response_data['item_details'] = []
-#             http_status_code = 404
-#         return Response(response_data, status=http_status_code)
 
 
 
 
-class FileUploadView(mixins.CreateModelMixin, generics.ListAPIView):
+class ItemImageUpload(mixins.CreateModelMixin, generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
@@ -280,32 +376,12 @@ class FileUploadView(mixins.CreateModelMixin, generics.ListAPIView):
                 destination.write(chunk)
             destination.close()
             if up_dir == 'profile_image':
-                obj = User.objects.filter(id=user_id).update(
-                profile_image=uploaded_file_name
+                obj = SellerItem.objects.filter(id=user_id).update(
+                item_image=uploaded_file_name
                 )
             elif up_dir == 'shop_image':
-                obj = User.objects.filter(id=user_id).update(
-                shop_image =uploaded_file_name
-                )
-            elif up_dir == 'owner_image':
-                obj = User.objects.filter(id=user_id).update(
-                owner_image =uploaded_file_name
-                )
-            elif up_dir == 'aadhaar_back_image':
-                obj = User.objects.filter(id=user_id).update(
-                aadhaar_back_image =uploaded_file_name
-                )
-            elif up_dir == 'aadhaar_front_image':
-                obj = User.objects.filter(id=user_id).update(
-                aadhaar_front_image =uploaded_file_name
-                )
-            elif up_dir == 'gstin_image':
-                obj = User.objects.filter(id=user_id).update(
-                gstin_image =uploaded_file_name
-                )
-            elif up_dir == 'fssai_image':
-                obj = User.objects.filter(id=user_id).update(
-                fssai_image =uploaded_file_name
+                obj = SellerCategory.objects.filter(id=user_id).update(
+                category_image =uploaded_file_name
                 )
             if os.path.exists('media/' + str(up_dir) + '/'):
                 base64_image = encode_image_base64(settings.MEDIA_ROOT + '/'+str(up_dir)+'/' + uploaded_file_name)

@@ -23,6 +23,8 @@ export class CommonService {
   gitinCertificateImg : string;
   fssaiCertificateImg : string;
   categoryImage: string;
+  itemImage: string;
+
   public tokenPairOverwriteObservable = new Subject<any>();
   public tokenOverwriteCallBackResult$ = this.tokenPairOverwriteObservable.asObservable();
   public profileImageObservable = new Subject<any>();
@@ -42,6 +44,9 @@ export class CommonService {
 
   public categoryImageObservable = new Subject<any>();
   public categoryImageCallBackResult$ = this.categoryImageObservable.asObservable();
+
+  public itemImageObservable = new Subject<any>();
+  public itemImageCallBackResult$ = this.itemImageObservable.asObservable();
 
   constructor(private http: HttpClient,
               private _configuration: ConfigurationService,
@@ -183,6 +188,7 @@ export class CommonService {
 		this.imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + imageBinary);
 		this.fssaiCertificateImg = this.imageUrl;
     userData.fssai_image = this.imageUrl;
+    console.log(userData.fssai_image)
 		this.fssaiCertificateObservable.next(true);
   }
 
@@ -203,6 +209,18 @@ export class CommonService {
 		this.categoryImage = this.imageUrl;
     userData.cat_image = this.imageUrl;
     console.log(userData)
-		this.fssaiCertificateObservable.next(true);
+		this.categoryImageObservable.next(true);
+  }
+
+
+
+  setItemImage(encodedImage){
+    let userData = JSON.parse(localStorage.getItem('userLoginData'));
+		let imageBinary = encodedImage; //image binary data response from api
+		this.imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + imageBinary);
+		this.itemImage = this.imageUrl;
+    userData.item_image = this.imageUrl;
+    console.log(userData.item_image)
+    this.itemImageObservable.next(true);
   }
 }

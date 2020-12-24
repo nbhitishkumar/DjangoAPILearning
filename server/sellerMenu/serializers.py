@@ -19,6 +19,12 @@ class SellerCategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class SellerCategoryNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SellerCategory
+        fields = ['category_name']
+
+
 class SellerItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = SellerItem

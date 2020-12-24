@@ -12,9 +12,12 @@ urlpatterns = [
     url(r'^seller-category/$', seller_menu_view.SellerCategoryMenuView.as_view(), name='seller-category'),
     url(r'^seller-categoryByid/$', seller_menu_view.CategoryDetailsByidView.as_view(), name='seller-categoryByid'),
     url(r'^delete-categoryByid/$', seller_menu_view.DeleteCategory.as_view(), name='delete-categoryByid'),
+    url(r'^seller-categoryName/$', seller_menu_view.CategoryNameById.as_view(), name='seller-categoryName'),
 
 
 
     # #### Item Management   #####
-    # url(r'^seller-itemlist/$', seller_menu_view.SellerItemList.as_view(), name='seller-itemlist'),
+    url(r'^seller-itemlistById/$', seller_menu_view.SellerItemListbyId.as_view(), name='seller-itemlistById'),
+    url(r'^category-item/$', seller_menu_view.SellerItemMenuView.as_view(), name='category-item'),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

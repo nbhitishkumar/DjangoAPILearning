@@ -30,7 +30,8 @@ import { AddEditCategoryComponent } from './dynamic_menu/add-edit-category/add-e
 import { CategoryListComponent } from './dynamic_menu/category-list/category-list.component';
 import { AgmDrawingModule } from '@agm/drawing';
 import { CommentBoxComponent } from './common/comment-box/comment-box.component';
-import { CategoryItemListComponent } from './dynamic_menu/category-item-list/category-item-list.component'
+import { CategoryItemListComponent } from './dynamic_menu/category-item-list/category-item-list.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { CategoryItemListComponent } from './dynamic_menu/category-item-list/cat
       apiKey: 'AIzaSyC5eb89wDUlHL1b-SCBtptGpOfqG09BH-k',
       libraries: ['places', 'drawing', 'geometry']
      }),
-     AgmDrawingModule
+     AgmDrawingModule,
+     NgxPaginationModule,
   ],
   entryComponents: [
     AddEditServiceAreaComponent,

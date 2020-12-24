@@ -40,6 +40,7 @@ class SellerItem(models.Model):
     created_date = models.DateTimeField(default=datetime.now, blank=True)
     modified_date = models.DateTimeField(default=datetime.now, blank=True)
     is_deleted = models.BooleanField(default=False)
+    is_approved = models.BooleanField(default= False)
 
     class Meta:
         db_table = 'seller_item'
