@@ -19,6 +19,8 @@ urlpatterns = [
     url(r'^vendor-details/$', vendor_Details_view.VendorDetailsView.as_view(), name='vendor-details'),
     url(r'^vendor-info/$', vendor_Details_view.VendorInfoView.as_view(), name='vendor-info'),
 
+    url(r'^comment-reg/$', vendor_Details_view.CommentView.as_view(), name='comment-reg'),
+
     
 
     ### Create New State and City

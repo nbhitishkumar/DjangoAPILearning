@@ -141,6 +141,37 @@ class VendorInfoView(generics.ListAPIView):
             response_data['vendorInfo'] = []
             return Response(response_data, status=200)
 
+class CommentView(generics.ListAPIView):
+    permission_classes = (IsAuthenticated,)
+
+    def put(self,request):
+        user = request.user
+        user_id = user.id
+        requestData = request.data
+        response_data = {}
+        com= requestData['box_name']
+        rs=User.objects.filter(id=user.id, is_superuser=True ,is_blocked=False, is_deleted=False)
+        if rs:
+            if com == 'shop_comment':
+                User.objects.filter(id=requestData['user_id'],user_type=2).update(shop_comment=requestData['message'],modified_date=timezone.now())
+            elif com == 'owner_comment':
+                User.objects.filter(id=requestData['user_id'],user_type=2).update(owner_comment=requestData['message'],modified_date=timezone.now())
+            elif com == 'fssai_comment':
+                User.objects.filter(id=requestData['user_id'],user_type=2).update(fssai_comment=requestData['message'],modified_date=timezone.now())
+            elif com == 'gstin_comment':
+                User.objects.filter(id=requestData['user_id'],user_type=2).update(gstin_comment=requestData['message'],modified_date=timezone.now())
+            elif com == 'aadhar_front_comment':
+                User.objects.filter(id=requestData['user_id'],user_type=2).update(aadhar_front_comment=requestData['message'],modified_date=timezone.now())
+            elif com == 'aadhar_back_comment':
+                User.objects.filter(id=requestData['user_id'],user_type=2).update(aadhar_back_comment=requestData['message'],modified_date=timezone.now())
+            response_data['status'] = 1
+            response_data['message'] = 'Comment Sent'
+            return JsonResponse(response_data, status=200)
+        else:
+            response_data['status'] = 0
+            response_data['message'] = 'No Access'
+            return JsonResponse(response_data, status=200)
+
 
 def encode_image_base64(full_path):
     image = ''

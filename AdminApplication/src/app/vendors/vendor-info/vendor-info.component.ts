@@ -161,13 +161,15 @@ export class VendorInfoComponent implements OnInit {
     this.dialogRefTags = this.dialog.open(ShowImageComponent, {
       data: {
         id: list_id,
-        image: this.fssaiCertificateImg
+        image: this.fssaiCertificateImg,
+        img_name: "Fssai Certificate",
+        comment_box: "fssai_comment",
+        user_id: this.vendorDetails.id
       },
         disableClose: true,
       });
       this.dialogRefTags.afterClosed().subscribe(result => {
         console.log('afterClosed', result);
-        // this.getServiceList();
       });
   }
 
@@ -176,13 +178,15 @@ export class VendorInfoComponent implements OnInit {
     this.ownerdialogRefTags = this.dialog.open(ShowImageComponent, {
       data: {
         id: list_id,
-        image: this.ownerImage
+        image: this.ownerImage,
+        img_name: "Owner Image",
+        comment_box: "owner_comment",
+        user_id: this.vendorDetails.id
       },
         disableClose: true,
       });
       this.ownerdialogRefTags.afterClosed().subscribe(result => {
         console.log('afterClosed', result);
-        // this.getServiceList();
       });
   }
 
@@ -191,13 +195,15 @@ export class VendorInfoComponent implements OnInit {
     this.shopdialogRefTags = this.dialog.open(ShowImageComponent, {
       data: {
         id: list_id,
-        image: this.shopImage
+        image: this.shopImage,
+        img_name: "Shop Image",
+        comment_box: "shop_comment",
+        user_id: this.vendorDetails.id
       },
         disableClose: true,
       });
       this.shopdialogRefTags.afterClosed().subscribe(result => {
         console.log('afterClosed', result);
-        // this.getServiceList();
       });
   }
 
@@ -206,13 +212,15 @@ export class VendorInfoComponent implements OnInit {
     this.frontdialogRefTags = this.dialog.open(ShowImageComponent, {
       data: {
         id: list_id,
-        image: this.aadharFrontImage
+        image: this.aadharFrontImage,
+        img_name: "Aadhar Card Front Image",
+        comment_box: "aadhar_front_comment",
+        user_id: this.vendorDetails.id
       },
         disableClose: true,
       });
       this.frontdialogRefTags.afterClosed().subscribe(result => {
         console.log('afterClosed', result);
-        // this.getServiceList();
       });
   }
 
@@ -221,13 +229,15 @@ export class VendorInfoComponent implements OnInit {
     this.backdialogRefTags = this.dialog.open(ShowImageComponent, {
       data: {
         id: list_id,
-        image: this.aadharBackImage
+        image: this.aadharBackImage,
+        img_name: "Aadhar Card Back Image",
+        comment_box: "aadhar_back_comment",
+        user_id: this.vendorDetails.id
       },
         disableClose: true,
       });
       this.backdialogRefTags.afterClosed().subscribe(result => {
         console.log('afterClosed', result);
-        // this.getServiceList();
       });
   }
 
@@ -236,31 +246,33 @@ export class VendorInfoComponent implements OnInit {
     this.gstindialogRefTags = this.dialog.open(ShowImageComponent, {
       data: {
         id: list_id,
-        image: this.gitinCertificateImg
+        image: this.gitinCertificateImg,
+        img_name: "GSTIN IMAGE",
+        shop_comment: "shop_comment",
+        comment_box: "gstin_comment",
+        user_id: this.vendorDetails.id
       },
         disableClose: true,
       });
       this.gstindialogRefTags.afterClosed().subscribe(result => {
         console.log('afterClosed', result);
-        // this.getServiceList();
       });
   }
 
-  commentdialogRefTags : MatDialogRef<CommentBoxComponent> | null;
-  CommentBox(list_id){
-    this.commentdialogRefTags = this.dialog.open(CommentBoxComponent, {
-      data: {
-        id: list_id,
-        // image: this.gitinCertificateImg
-      },
-        disableClose: true,
-      });
-      this.commentdialogRefTags.afterClosed().subscribe(result => {
-        console.log('afterClosed', result);
-        // this.getServiceList();
-      });
+  // commentdialogRefTags : MatDialogRef<CommentBoxComponent> | null;
+  // CommentBox(list_id){
+  //   this.commentdialogRefTags = this.dialog.open(CommentBoxComponent, {
+  //     data: {
+  //       id: list_id,
+  //       image: this.gitinCertificateImg,
+  //     },
+  //       disableClose: true,
+  //     });
+  //     this.commentdialogRefTags.afterClosed().subscribe(result => {
+  //       console.log('afterClosed', result);
+  //     });
 
-  }
+  // }
 
 
 

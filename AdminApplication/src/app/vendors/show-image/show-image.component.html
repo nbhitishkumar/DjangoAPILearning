@@ -1,3 +1,13 @@
 <div class="text-right"><a href="javascript:void(0)" (click)="closePopup()" >X</a></div>
+<h3 class="text-center">{{ pageTitle }}</h3>
 <img class="m-x-auto img-fluid img-circle" width="100%" style="height: 400px;" [src]=fssaiCertificateImg>
+<form [formGroup]="addComment" (ngSubmit)="Comment()">
+<div class="comment">
+    <textarea class="form-control" [formControl]="comment" placeholder="Comment on Image"></textarea>
+    <button style="float: right;"  class="btn btn-primary">
+        <i class="far fa-paper-plane"></i>
+    </button>
+</div>
+</form>
+
 

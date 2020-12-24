@@ -49,6 +49,12 @@ class Users(AbstractUser):
     mall_name = models.CharField(max_length=225, blank=True, null=True)
     state = models.CharField(max_length=225, blank=True, null=True)
     shop_area = models.CharField(max_length=225, blank=True, null=True)
+    shop_comment = models.CharField(max_length=225, blank=True, null=True)
+    owner_comment = models.CharField(max_length=225, blank=True, null=True)
+    fssai_comment = models.CharField(max_length=225, blank=True, null=True)
+    gstin_comment = models.CharField(max_length=225, blank=True, null=True)
+    aadhar_front_comment = models.CharField(max_length=225, blank=True, null=True)
+    aadhar_back_comment = models.CharField(max_length=225, blank=True, null=True)
 
     class Meta:
         db_table = 'auth_user'
