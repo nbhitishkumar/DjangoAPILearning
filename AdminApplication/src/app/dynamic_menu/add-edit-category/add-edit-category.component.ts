@@ -42,6 +42,7 @@ export class AddEditCategoryComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    console.log(this.categoryData.id)
     if(this.category_id !=0){
       const reqData ={
         category_id: this.category_id
@@ -49,6 +50,7 @@ export class AddEditCategoryComponent implements OnInit {
       this.adminservice.getCategoryDeatilsById(reqData).subscribe(
         res => {
           if(res['status'] == 1){
+            console.log(res['category'][0])
             this.addCategory.setValue({
               categoryName: res['category'][0]['category_name'],
               categoryDes: res['category'][0]['category_des']

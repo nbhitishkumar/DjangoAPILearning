@@ -39,10 +39,10 @@ export class CategoryListComponent implements OnInit {
       res => {
         if(res['status'] == 1){
           this.categoryList = res['category_details'];
-          console.log(this.categoryList)
-          if(this.categoryList.category_image !=''){
-            this.common.setCategoryImage(this.categoryList[0].category_image);
-          }
+          // console.log(this.categoryList.category_image)
+          // if(this.categoryList.category_image !=''){
+          //   this.common.setCategoryImage(this.categoryList.category_image);
+          // }
         }
       },
       err => {
@@ -81,6 +81,7 @@ export class CategoryListComponent implements OnInit {
 
 
   uploadImage(event) {
+    console.log(event)
     var files: any = {};
     var target: HTMLInputElement = event.target as HTMLInputElement;
     let fileType = target.files[0].type;
@@ -122,6 +123,11 @@ export class CategoryListComponent implements OnInit {
       }
   
     );
+  }
+
+
+  CategoryDet(id){
+    console.log(id)
   }
 
 

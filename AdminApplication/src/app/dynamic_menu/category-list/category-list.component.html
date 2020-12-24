@@ -34,16 +34,17 @@
         </div>
         <div class="row">
            <div class="col-12 col-md-6 col-lg-3" *ngFor ="let cate of categoryList">
-              <div class="card card-primary"  >
+              <div class="card card-primary">
                  <div class="card-header">
                   <div class="image-upload">
                      <label for="file-input">
                         <img [src]=categoryImage alt="Quick Cakes">
                      </label>
-                     <input id="file-input" (change)="uploadImage($event)" type="file" />
+                     <!-- <input id="file-input" (change)="uploadImage($event)" type="file" /> -->
+                     <a (click)="editCategory(cate.id)" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i></a>
                   </div>
                  </div>
-                 <div class="card-body">
+                 <div class="card-body" style="cursor: pointer;" (click)=CategoryDet(cate.id)>
                     <h2 class="item-card-title mt-3 mb-3">{{cate.category_name}}</h2>
                     <p class="card-text">{{cate.category_des}}</p>
                  </div>

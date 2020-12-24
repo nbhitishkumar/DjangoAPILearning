@@ -121,18 +121,23 @@ class CategoryDetailsByidView(APIView):
         user_id = user.id
         responce_data = {}
         requestData = request.data
+        print(requestData)
         rs=SellerCategory.objects.filter(user_id=user_id, id=requestData['category_id'], is_deleted=False)
+        print(rs)
         if rs:
             serializer = SellerCategorySerializer(rs, many=True)
             responce_data['status'] = 1
             responce_data['massage'] = 'category details'
             responce_data['category'] = serializer.data
+            print(responce_data)
             return JsonResponse(responce_data, status=200)
         else:
             responce_data['status'] = 0
             responce_data['massage'] = 'This category is not present in our database'
             responce_data['category'] = []
+            print(responce_data)
             return JsonResponse(responce_data, status=200)
+
 
 class DeleteCategory(APIView):
     permission_classes = (IsAuthenticated,)

@@ -29,7 +29,8 @@ import { ShowImageComponent } from './vendors/show-image/show-image.component';
 import { AddEditCategoryComponent } from './dynamic_menu/add-edit-category/add-edit-category.component';
 import { CategoryListComponent } from './dynamic_menu/category-list/category-list.component';
 import { AgmDrawingModule } from '@agm/drawing';
-import { CommentBoxComponent } from './common/comment-box/comment-box.component'
+import { CommentBoxComponent } from './common/comment-box/comment-box.component';
+import { CategoryItemListComponent } from './dynamic_menu/category-item-list/category-item-list.component'
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { CommentBoxComponent } from './common/comment-box/comment-box.component'
     AddEditCategoryComponent,
     CategoryListComponent,
     CommentBoxComponent,
+    CategoryItemListComponent,
   ],
   imports: [
     BrowserModule,
