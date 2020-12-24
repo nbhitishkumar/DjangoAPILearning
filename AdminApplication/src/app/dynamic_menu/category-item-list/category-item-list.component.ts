@@ -67,8 +67,10 @@ export class CategoryItemListComponent implements OnInit {
       res => {
         if(res['status'] == 1){
           this.categoryItemList = res['item_details'];
-          if(this.categoryItemList.item_image != ''){
-            this.common.setItemImage(this.categoryItemList.item_image);
+          for (var val of this.categoryItemList){
+            if(val.item_image != ''){
+                this.common.setItemImage(val.item_image);
+              }
           }
         }
       },

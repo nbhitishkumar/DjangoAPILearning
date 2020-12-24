@@ -292,13 +292,7 @@ class SellerItemMenuView(generics.ListAPIView):
 #         return data
 
 
-def encode_image_base64(full_path):
-    image = ''
-    if full_path != "":
-        with open(full_path, 'rb') as imgFile:
-            image = base64.b64encode(imgFile.read())
-    return image
-    
+
     # def put(self, request)
 
 
@@ -311,19 +305,18 @@ class SellerItemListbyId(generics.ListAPIView):
         user_id = user.id
         requestdata = request.data
         response_data = {}
+        res = {}
         item_image_name = ''
         rs = User.objects.filter(id=user_id,is_deleted=False)
         if rs:
             item_list = SellerItem.objects.filter(category=requestdata['category_id'])
             item_serialize = SellerItemSerializer(item_list, many=True)
             for details in item_serialize.data:
-                print()
-            # for details in item_serialize.data:
-            #     item_image_name = details['item_image']
-            #     if item_image_name is not None:
-            #         if os.path.exists('media/item_image/' + item_image_name):
-            #             base64_image = encode_image_base64(settings.MEDIA_ROOT + '/item_image/' + item_image_name)
-            #             details['item_image'] = base64_image
+                item_image_name = details['item_image']
+                if item_image_name is not None:
+                    if os.path.exists('media/item_image/' + item_image_name):
+                        base64_image = encode_image_base64(settings.MEDIA_ROOT + '/item_image/' + item_image_name)
+                        details['item_image'] = base64_image
             response_data['status'] = 1
             response_data['msg'] = 'Successfully get seller details'
             response_data['item_details'] = item_serialize.data
@@ -334,9 +327,6 @@ class SellerItemListbyId(generics.ListAPIView):
             response_data['item_details'] = []
             http_status_code = 404
         return Response(response_data, status=http_status_code)
-
-
-
 
 
 
@@ -403,3 +393,12 @@ class ItemImageUpload(mixins.CreateModelMixin, generics.ListAPIView):
 
         return Response(data)
 
+
+
+def encode_image_base64(full_path):
+    image = ''
+    if full_path != "":
+        with open(full_path, 'rb') as imgFile:
+            image = base64.b64encode(imgFile.read())
+    return image
+    
