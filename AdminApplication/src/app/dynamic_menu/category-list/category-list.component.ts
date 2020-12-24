@@ -118,7 +118,6 @@ export class CategoryListComponent implements OnInit {
         }
       },
       err => {
-        // this.cs.openSnackBar('ERROR IN FILE UPLOAD, PLEASE TRY AGAIN LATER.','');
         console.log(err)
       }
   
@@ -126,8 +125,8 @@ export class CategoryListComponent implements OnInit {
   }
 
 
-  CategoryDet(id){
-    console.log(id)
+  CategoryDet(list_id){
+    this.router.navigate(["/cat-ietm", list_id]);
   }
 
 

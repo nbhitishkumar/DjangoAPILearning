@@ -9,6 +9,7 @@ import { SignuplayoutComponent } from './layouts/signuplayout/signuplayout.compo
 import { LoginComponent } from './signups_logins/login/login.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { VendorInfoComponent } from './vendors/vendor-info/vendor-info.component';
+import { CategoryItemListComponent } from './dynamic_menu/category-item-list/category-item-list.component';
 
 const LOGIN_SIGNUP_ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
@@ -23,6 +24,7 @@ const MAIN_LAYOUT: Routes = [
   { path: 'vendor-info/:list_id', component: VendorInfoComponent},
   { path: 'city-area', component: CityAreaComponent},
   { path: 'category', component: CategoryListComponent},
+  { path: 'cat-ietm/:list_id', component: CategoryItemListComponent}
 ];
 
 const APP_ROUTES: Routes = [
