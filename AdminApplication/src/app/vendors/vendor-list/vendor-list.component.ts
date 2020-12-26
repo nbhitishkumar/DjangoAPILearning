@@ -39,7 +39,6 @@ export class VendorListComponent implements OnInit {
   }
 
   deleteAccount(list_id){
-    // console.log(list_id);
     const reqData: any = {
       user_id: list_id,
       is_deleted: true
@@ -55,7 +54,7 @@ export class VendorListComponent implements OnInit {
       },
       err => {
         console.log('ERROR', err.status);
-        this.common.openSnackBar('Some error occured, please try again later', '');
+        this.common.openSnackBar('Some error, please try again later', '');
       },
     );
   }

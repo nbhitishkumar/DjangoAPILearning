@@ -13,7 +13,7 @@ export class ShowImageComponent implements OnInit {
   comment = new FormControl('', [Validators.required]);
   addComment: FormGroup;
   fssaiCertificateImg=""
-  pageTitle: string = 'Add Category'
+  pageTitle: string = ''
 
   constructor(
     public dialogRef: MatDialogRef<ShowImageComponent>,

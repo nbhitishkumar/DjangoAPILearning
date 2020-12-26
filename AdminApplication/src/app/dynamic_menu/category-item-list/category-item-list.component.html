@@ -51,9 +51,7 @@
                </div>
                <div class="row mt-4">
                   <div class="col-12">
-                     <div class="card">
-                        <div class="card-body">
-                          <h4 style="text-align: center; font-size: 30px;">{{title}}</h4>
+                    <h4 class="heading">{{title}}</h4>
                            <div class="float-right">
                               <form>
                                  <div class="input-group">
@@ -70,16 +68,12 @@
                                  <div class="card card-primary">
                                     <div class="card-header">
                                      <div class="image-upload">
-                                       <!-- <img class="m-x-auto img-fluid img-circle" width="70px" [src]=itemImage (click)="showItem(item.id)"> -->
-                                       <img [src]=itemImage width="80px" alt="Quick Cakes">
+                                       <img src="{{'data:image/jpg;base64,' + item.item_image}}" alt="{{item.item_name}}">
                                      </div>
                                     </div>
-                                    <div class="card-body">
-                                       <h2 class="item-card-title mt-3 mb-3">{{item.item_name}}</h2>
-                                       <p class="card-text"><strong>Description:-</strong> {{item.item_description}}</p>
-                                       <p class="card-text"><strong>Preparing Time:-</strong> {{item.item_preparing_time}}</p>
-                                       <p class="card-text"><strong>Delivery Time:-</strong> {{item.item_delivery_time}}</p>
-                                       <p class="card-text"><strong>Price:-</strong> {{item.item_price}}</p>
+                                    <div class="item-body">
+                                       <h2 class="heading">{{item.item_name}}</h2>
+                                       <a style="align-items: center;margin-left:auto; margin-right:auto" (click)="viewCategory(item.id)" class="btn btn-icon btn-primary"><i class="far fa-eye"></i></a>
                                     </div>
                                  </div>
                               </div>
@@ -88,32 +82,9 @@
                               <nav>
                                  <ul class="pagination">
                                     <pagination-controls (pageChange)="p = $event"  responsive="true" autoHide="true" nextLabel="" previousLabel=""></pagination-controls>
-                                    <!-- <li class="page-item disabled">
-                                       <a class="page-link" href="#" aria-label="Previous">
-                                       <span aria-hidden="true">&laquo;</span>
-                                       <span class="sr-only">Previous</span>
-                                       </a>
-                                    </li>
-                                    <li class="page-item active">
-                                       <a class="page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item">
-                                       <a class="page-link" href="#">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                       <a class="page-link" href="#">3</a>
-                                    </li>
-                                    <li class="page-item">
-                                       <a class="page-link" href="#" aria-label="Next">
-                                       <span aria-hidden="true">&raquo;</span>
-                                       <span class="sr-only">Next</span>
-                                       </a>
-                                    </li> -->
                                  </ul>
                               </nav>
                            </div>
-                        </div>
-                     </div>
                   </div>
                </div>
                </div>

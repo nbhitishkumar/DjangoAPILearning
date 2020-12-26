@@ -37,9 +37,11 @@
               <div class="card card-primary">
                  <div class="card-header">
                   <div class="image-upload">
-                     <label for="file-input">
-                        <img [src]=categoryImage alt="Quick Cakes">
+                    <img src="{{'data:image/jpg;base64,' + cate.category_image}}">
+                     <!-- <label for="file-input">
+
                      </label>
+                     <input id="file-input" type="file" (change)="uploadImage($event,cate.id)" /> -->
                      <!-- <input id="file-input" (change)="uploadImage($event)" type="file" /> -->
                      <a (click)="editCategory(cate.id)" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i></a>
                   </div>

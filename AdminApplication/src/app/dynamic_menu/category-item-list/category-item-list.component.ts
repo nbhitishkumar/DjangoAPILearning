@@ -1,5 +1,7 @@
+import { ViewItemComponent } from './../view-item/view-item.component';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AdminApiService } from 'src/app/services/admin-api/admin-api.service';
 import { CommonService } from 'src/app/services/common/common.service';
 
@@ -20,9 +22,10 @@ export class CategoryItemListComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private dialog: MatDialog,
     private adminservice: AdminApiService,
     private common: CommonService
-  ) { 
+  ) {
     this.config = {
       itemsPerPage: 1,
       currentPage: 1,
@@ -67,11 +70,6 @@ export class CategoryItemListComponent implements OnInit {
       res => {
         if(res['status'] == 1){
           this.categoryItemList = res['item_details'];
-          for (var val of this.categoryItemList){
-            if(val.item_image != ''){
-                this.common.setItemImage(val.item_image);
-              }
-          }
         }
       },
       err => {
@@ -84,4 +82,17 @@ export class CategoryItemListComponent implements OnInit {
     this.config.currentPage = event;
   }
 
+  dialogRefTags : MatDialogRef<ViewItemComponent> | null;
+  viewCategory(list_id){
+    this.dialogRefTags = this.dialog.open(ViewItemComponent, {
+      data: {
+        id: list_id,
+        itemList: this.categoryItemList[list_id-1]
+      },
+        disableClose: true,
+      });
+      this.dialogRefTags.afterClosed().subscribe(result => {
+        this.getCategoryItemList(this.category_id);
+      });
+  }
 }

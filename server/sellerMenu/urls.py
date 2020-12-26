@@ -19,5 +19,8 @@ urlpatterns = [
     # #### Item Management   #####
     url(r'^seller-itemlistById/$', seller_menu_view.SellerItemListbyId.as_view(), name='seller-itemlistById'),
     url(r'^category-item/$', seller_menu_view.SellerItemMenuView.as_view(), name='category-item'),
+    url(r'^item-details/$', seller_menu_view.SellerItemViewId.as_view(), name='item-details'),
+    url(r'^item-image-upload/$',seller_menu_view.ItemImageUpload.as_view(),name ='item-image-upload')
+    
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

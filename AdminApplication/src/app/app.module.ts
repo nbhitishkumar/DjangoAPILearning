@@ -23,15 +23,14 @@ import { AddCityComponent } from './admin/add-city/add-city.component';
 import { AddStateComponent } from './admin/add-state/add-state.component';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-import { AgmCoreModule } from '@agm/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ShowImageComponent } from './vendors/show-image/show-image.component';
 import { AddEditCategoryComponent } from './dynamic_menu/add-edit-category/add-edit-category.component';
 import { CategoryListComponent } from './dynamic_menu/category-list/category-list.component';
-import { AgmDrawingModule } from '@agm/drawing';
 import { CommentBoxComponent } from './common/comment-box/comment-box.component';
 import { CategoryItemListComponent } from './dynamic_menu/category-item-list/category-item-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ViewItemComponent } from './dynamic_menu/view-item/view-item.component';
 
 
 @NgModule({
@@ -53,6 +52,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CategoryListComponent,
     CommentBoxComponent,
     CategoryItemListComponent,
+    ViewItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,11 +66,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatSelectModule,
     MatInputModule,
     MatSnackBarModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC5eb89wDUlHL1b-SCBtptGpOfqG09BH-k',
-      libraries: ['places', 'drawing', 'geometry']
-     }),
-     AgmDrawingModule,
      NgxPaginationModule,
   ],
   entryComponents: [
@@ -78,8 +73,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AddCityComponent,
     AddStateComponent,
     ShowImageComponent,
-    AddEditCategoryComponent, 
-    CommentBoxComponent
+    AddEditCategoryComponent,
+    CommentBoxComponent,
+    ViewItemComponent
   ],
   providers: [
     CommonService,

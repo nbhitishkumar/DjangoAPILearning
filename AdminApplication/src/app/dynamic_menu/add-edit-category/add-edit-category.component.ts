@@ -15,17 +15,18 @@ export class AddEditCategoryComponent implements OnInit {
   addCategory: FormGroup;
   categoryName = new FormControl('', [Validators.required]);
   categoryDes = new FormControl('', [Validators.required]);
+  categoryImg = new FormControl('', [Validators.required]);
   category_id: number = 0;
   pageTitle: string = 'Add Category'
   buttonText: string = 'Save'
 
   constructor(
     _formbuilder: FormBuilder,
-    public dialogRef: MatDialogRef<AddEditCategoryComponent>, @Inject(MAT_DIALOG_DATA) 
+    public dialogRef: MatDialogRef<AddEditCategoryComponent>, @Inject(MAT_DIALOG_DATA)
     public categoryData:any,
 		private dialog: MatDialog,
-    private ar: ActivatedRoute, 
-    
+    private ar: ActivatedRoute,
+
     private router: Router,
     private common: CommonService,
     private adminservice: AdminApiService
@@ -81,10 +82,19 @@ export class AddEditCategoryComponent implements OnInit {
         category_name: this.addCategory.value.categoryName,
         category_des: this.addCategory.value.categoryDes
       }
+      console.log(formData)
+
       if(this.category_id ==0){
         this.adminservice.saveCategory(formData).subscribe(
           res => {
             if(res['status'] == 1){
+              var files: any ={};
+              var target: HTMLInputElement = event.target as HTMLInputElement;
+
+              const reqData: any ={
+                category_id: res["data"][0]['id'],
+
+              }
               this.closePopup();
             }
             else{

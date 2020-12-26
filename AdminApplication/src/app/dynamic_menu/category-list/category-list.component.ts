@@ -21,11 +21,10 @@ export class CategoryListComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private adminservice: AdminApiService
-  ) { 
+  ) {
     this.common.categoryImageCallBackResult$.subscribe(value =>{
 		  if(value){
       this.categoryImage = this.common.categoryImage;
-      console.log(this.categoryImage)
 		  }
 		});
   }
@@ -39,10 +38,6 @@ export class CategoryListComponent implements OnInit {
       res => {
         if(res['status'] == 1){
           this.categoryList = res['category_details'];
-          // console.log(this.categoryList.category_image)
-          // if(this.categoryList.category_image !=''){
-          //   this.common.setCategoryImage(this.categoryList.category_image);
-          // }
         }
       },
       err => {
@@ -50,7 +45,7 @@ export class CategoryListComponent implements OnInit {
       },
     );
   }
-  
+
   dialogRefTags : MatDialogRef<AddEditCategoryComponent> | null;
   addCategory(list_id){
     this.dialogRefTags = this.dialog.open(AddEditCategoryComponent, {
@@ -80,8 +75,7 @@ export class CategoryListComponent implements OnInit {
   }
 
 
-  uploadImage(event) {
-    console.log(event)
+  uploadImage(event,cate_id) {
     var files: any = {};
     var target: HTMLInputElement = event.target as HTMLInputElement;
     let fileType = target.files[0].type;
@@ -91,18 +85,19 @@ export class CategoryListComponent implements OnInit {
     if (target.files[0].type === "image/jpeg" ||
       target.files[0].type === "image/jpg" ||
       target.files[0].type === "image/png") {
-        this.saveImage(files, fileType);
+        this.saveImage(files, fileType, cate_id);
       } else {
       }
   }
-  
-  saveImage(file, file_type) {
+
+  saveImage(file, file_type, cate_id) {
     var form_data = new FormData();
     form_data.append("file", file);
     form_data.append('file_type', file_type);
     form_data.append('up_dir', 'category_image');
-  
-    this.userservice.uploadProfileImage(form_data).subscribe(
+    form_data.append('category_id',cate_id)
+
+    this.userservice.uploadCategoryImage(form_data).subscribe(
       res => {
         if(res['status']==1) {
       this.common.setCategoryImage(res['base64_image']);
@@ -120,7 +115,7 @@ export class CategoryListComponent implements OnInit {
       err => {
         console.log(err)
       }
-  
+
     );
   }
 

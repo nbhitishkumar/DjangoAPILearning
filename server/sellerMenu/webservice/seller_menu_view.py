@@ -42,9 +42,16 @@ class SellerCategoryMenuView(generics.ListAPIView):
         user = request.user
         user_id = user.id
         response_data = {}
+        item_image_name = ''
         rs = SellerCategory.objects.filter(user_id=user_id, is_deleted=False)
         if rs:
             category_serialize = SellerCategorySerializer(rs, many=True)
+            for details in category_serialize.data:
+                item_image_name = details['category_image']
+                if item_image_name is not None:
+                    if os.path.exists('media/category_image/' + item_image_name):
+                        base64_image = encode_image_base64(settings.MEDIA_ROOT + '/category_image/' + item_image_name)
+                        details['category_image'] = base64_image
             response_data['status'] = 1
             response_data['msg'] = 'Successfully get seller details'
             response_data['category_details'] = category_serialize.data
@@ -76,8 +83,11 @@ class SellerCategoryMenuView(generics.ListAPIView):
                     created_date=timezone.now(),
                     modified_date=timezone.now(),
                 )
+                rs = SellerCategory.objects.filter(category_name=requestdata['category_name'],is_deleted=False)
+                serializer = SellerCategorySerializer(rs, many=True)
                 response['status'] = 1
                 response['msg'] = 'New Category Added'
+                response['data'] = serializer.data
                 http_status_code = 200
         else:
             response['status'] = 0
@@ -121,21 +131,17 @@ class CategoryDetailsByidView(APIView):
         user_id = user.id
         responce_data = {}
         requestData = request.data
-        print(requestData)
         rs=SellerCategory.objects.filter(user_id=user_id, id=requestData['category_id'], is_deleted=False)
-        print(rs)
         if rs:
             serializer = SellerCategorySerializer(rs, many=True)
             responce_data['status'] = 1
             responce_data['massage'] = 'category details'
             responce_data['category'] = serializer.data
-            print(responce_data)
             return JsonResponse(responce_data, status=200)
         else:
             responce_data['status'] = 0
             responce_data['massage'] = 'This category is not present in our database'
             responce_data['category'] = []
-            print(responce_data)
             return JsonResponse(responce_data, status=200)
 
 class CategoryNameById(APIView):
@@ -157,7 +163,6 @@ class CategoryNameById(APIView):
             responce_data['status'] = 0
             responce_data['massage'] = 'This category is not present in our database'
             responce_data['category'] = []
-            print(responce_data)
             return JsonResponse(responce_data, status=200)
 
 
@@ -237,65 +242,6 @@ class SellerItemMenuView(generics.ListAPIView):
         return Response(response_data, status=http_status_code)
 
 
-
-# def uploadFile(id, fileName, filetype, dir):
-#     file1 = fileName
-#     file_type = filetype
-#     up_dir = dir
-#     result_list = {}
-#     new_file_name = ''
-#     full_path_name = ''
-#     upload_status = False
-#     base64_image = ''
-#     if file_type is None:
-#         file_type = "img"
-#     if up_dir is None:
-#         up_dir = "images"
-#     image_name = file1.name
-#     name1 = get_random_string(length=8)
-#     ext = image_name.split('.')[-1]
-#     now = datetime.now().strftime('%Y%m%d-%H%M%S-%f')
-#     uploaded_file_name = now + '.' + ext
-#     #####################################
-#     ## Check File Type (Only 'jpg', 'jpeg', 'gif', 'png','pdf' allowed)
-#     if ext in ['jpg', 'jpeg', 'png']:
-#         if not os.path.exists('media/' + str(up_dir) + '/'):
-#             os.makedirs('media/' + str(up_dir) + '/')
-#         upload_to = 'media/' + str(up_dir) + '/%s' % (uploaded_file_name)
-#         fullpath = settings.BASE_DIR + '/media/' + str(up_dir)
-#         destination = open(upload_to, 'wb+')
-#         for chunk in file1.chunks():
-#             destination.write(chunk)
-#         destination.close()
-#         if up_dir == 'item_image':
-#             obj = SellerItem.objects.filter(id=id).update(
-#             item_image=uploaded_file_name
-#             )
-#         if os.path.exists('media/' + str(up_dir) + '/'):
-#             base64_image = encode_image_base64(settings.MEDIA_ROOT + '/'+str(up_dir)+'/' + uploaded_file_name)
-#         data = {
-#             'status': 1,
-#             'base64_image': base64_image,
-#             'uploaded_file_name': uploaded_file_name,
-#             'uploaded_file_url': fullpath,
-#             'message': 'Uploaded Successfully',
-#         }
-#         return data
-#     else:
-#         data = {
-#             'status': 0,
-#             'base64_image': base64_image,
-#             'uploaded_file_name': '',
-#             'uploaded_file_url': '',
-#             'message': 'File extension error',
-#         }
-#         return data
-
-
-
-    # def put(self, request)
-
-
 #### admin works
 class SellerItemListbyId(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
@@ -329,6 +275,42 @@ class SellerItemListbyId(generics.ListAPIView):
         return Response(response_data, status=http_status_code)
 
 
+class SellerItemViewId(generics.ListAPIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self, request, format=None):
+        user = request.user
+        user_id = user.id
+        requestdata = request.data
+        response_data = {}
+        res = {}
+        item_image_name = ''
+        rs = User.objects.filter(id=user_id,is_deleted=False)
+        if rs:
+            item_list = SellerItem.objects.filter(id=requestdata['item_id'])
+            if item_list:
+                item_serialize = SellerItemSerializer(item_list,many=True)
+                for details in item_serialize.data:
+                    item_image_name = details['item_image']
+                    if item_image_name is not None:
+                        if os.path.exists('media/item_image/' + item_image_name):
+                            base64_image = encode_image_base64(settings.MEDIA_ROOT + '/item_image/' + item_image_name)
+                            details['item_image'] = base64_image
+                response_data['status'] = 1
+                response_data['msg'] = 'Successfully get seller details'
+                response_data['item_details'] = item_serialize.data
+                http_status_code = 200
+            else:
+                response_data['status'] = 0
+                response_data['msg'] = 'No data found'
+                response_data['item_details'] = []
+                http_status_code = 404
+        else:
+            response_data['status'] = 0
+            response_data['msg'] = 'User Not Found'
+            http_status_code = 404
+        return Response(response_data, status=http_status_code)
+
+
 
 
 class ItemImageUpload(mixins.CreateModelMixin, generics.ListAPIView):
@@ -340,6 +322,7 @@ class ItemImageUpload(mixins.CreateModelMixin, generics.ListAPIView):
         file1 = request.FILES['file']  ## Uploaded file
         file_type = request.data['file_type']  ## file Type i.e. image / doc / pdf   etc
         up_dir = request.data['up_dir']
+        category_id = request.data['category_id']
         result_list = {}
         new_file_name = ''
         full_path_name = ''
@@ -365,12 +348,12 @@ class ItemImageUpload(mixins.CreateModelMixin, generics.ListAPIView):
             for chunk in file1.chunks():
                 destination.write(chunk)
             destination.close()
-            if up_dir == 'profile_image':
+            if up_dir == 'item_image':
                 obj = SellerItem.objects.filter(id=user_id).update(
                 item_image=uploaded_file_name
                 )
-            elif up_dir == 'shop_image':
-                obj = SellerCategory.objects.filter(id=user_id).update(
+            elif up_dir == 'category_image':
+                obj = SellerCategory.objects.filter(id=category_id).update(
                 category_image =uploaded_file_name
                 )
             if os.path.exists('media/' + str(up_dir) + '/'):
@@ -390,7 +373,6 @@ class ItemImageUpload(mixins.CreateModelMixin, generics.ListAPIView):
                 'uploaded_file_url': '',
                 'message': 'File extension error',
             }
-
         return Response(data)
 
 
