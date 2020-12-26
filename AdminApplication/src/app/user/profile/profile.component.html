@@ -1,207 +1,280 @@
-<div class="section-body">
-  <div class="row mt-sm-4">
-    <div class="col-12 col-md-12 col-lg-4">
-      <div class="row mt-sm-4 background-image-body">
-        <div class="row author-box" style="align-items: center; margin-left: 30%;">
-          <img alt="image" src="assets/img/users/user-6.png" class="rounded-circle author-box-picture box-center mt-4">
-        </div>
-        <!-- <div class="card">
-          <div class="card-header">
-            <h4>Skills</h4>
-          </div>
-        </div>
-        <div class="card-body">
-          <ul class="list-unstyled user-progress list-unstyled-border list-unstyled-noborder">
-            <li class="media">
-              <div class="media-body">
-                <div class="media-title">Java</div>
-              </div>
-              <div class="media-progressbar p-t-5">
-                <div class="progress" data-height="15">
-                  <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" data-width="70%">70%</div>
-                </div>
-              </div>
-            </li>
-            <li class="media">
-              <div class="media-body">
-                <div class="media-title">Web Design</div>
-              </div>
-              <div class="media-progressbar p-t-5">
-                <div class="progress" data-height="15">
-                  <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" data-width="80%">80%</div>
-                </div>
-              </div>
-            </li>
-            <li class="media">
-              <div class="media-body">
-                <div class="media-title">Photoshop</div>
-              </div>
-              <div class="media-progressbar p-t-5">
-                <div class="progress" data-height="15">
-                  <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" data-width="48%">48%</div>
-                </div>
-              </div>
-            </li>
-            <li class="media">
-              <div class="media-body">
-                <div class="media-title">Python</div>
-              </div>
-              <div class="media-progressbar p-t-5">
-                <div class="progress" data-height="15">
-                  <div class="progress-bar bg-red progress-bar-striped progress-bar-animated" data-width="60%">60%</div>
-                </div>
-              </div>
-            </li>
-            <li class="media">
-              <div class="media-body">
-                <div class="media-title">laravel</div>
-              </div>
-              <div class="media-progressbar p-t-5">
-                <div class="progress" data-height="15">
-                  <div class="progress-bar bg-blue progress-bar-striped progress-bar-animated" data-width="30%">30%</div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div> -->
+<div id="app">
+  <div class="main-wrapper main-wrapper-1">
+    <div class="navbar-bg"></div>
+    <nav class="navbar navbar-expand-lg main-navbar">
+      <div class="form-inline mr-auto">
+        <ul class="navbar-nav mr-3">
+          <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg collapse-btn"><i
+                class="fas fa-bars"></i></a></li>
+          <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
+                <i class="fas fa-expand"></i>
+              </a>
+          </li>
+          <li>
+            <div class="search-group">
+              <span class="nav-link nav-link-lg" id="search">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+              </span>
+              <input type="text" class="search-control" placeholder="search" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
       </div>
+      <ul class="navbar-nav navbar-right">
+        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+            class="nav-link notification-toggle nav-link-lg"><i class="far fa-bell"></i><span class="notification-count bg-green">4</span></a>
+          <div class="dropdown-menu dropdown-list dropdown-menu-right">
+            <div class="dropdown-header">Notifications
+              <div class="float-right">
+                <a href="#">Mark All As Read</a>
+              </div>
+            </div>
+            <div class="dropdown-list-content dropdown-list-icons">
+              <a href="#" class="dropdown-item dropdown-item-unread">
+                <span class="dropdown-item-icon l-bg-green text-white">
+                  <i class="fas fa-shopping-cart"></i>
+                </span>
+                <span class="dropdown-item-desc">
+                  5 sales Product
+                  <span class="time">8 Hours Ago</span>
+                </span>
+              </a>
+              <a href="#" class="dropdown-item dropdown-item-unread">
+                <span class="dropdown-item-icon l-bg-orange text-white">
+                  <i class="fa fa-user-plus" aria-hidden="true"></i>
+                </span>
+                <span class="dropdown-item-desc">
+                  10 Customers Inquiry
+                  <span class="time">7 Hours Ago</span>
+                </span>
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="dropdown-item-icon l-bg-yellow text-white">
+                  <i class="fa fa-server" aria-hidden="true"></i>
+                </span>
+                <span class="dropdown-item-desc">
+                  Your Subscription Expired
+                  <span class="time">10 Hours Ago</span>
+                </span>
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="dropdown-item-icon l-bg-blue text-white">
+                  <i class="fas fa-user-edit" aria-hidden="true"></i>
+                </span>
+                <span class="dropdown-item-desc">
+                  Update Profile
+                  <span class="time">9 Hours Ago</span>
+                </span>
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="dropdown-item-icon l-bg-purple text-white">
+                  <i class="far fa-envelope" aria-hidden="true"></i>
+                </span>
+                <span class="dropdown-item-desc">
+                  10 Email Notifications
+                  <span class="time">Yesterday</span>
+                </span>
+              </a>
+            </div>
+            <div class="dropdown-footer text-center">
+              <a href="#">View All <i class="fas fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </li>
+        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+            class="nav-link nav-link-lg beep"><i class="far fa-envelope"></i></a>
+          <div class="dropdown-menu dropdown-list dropdown-menu-right">
+            <div class="dropdown-header">Messages
+              <div class="float-right">
+                <a href="#">Mark All As Read</a>
+              </div>
+            </div>
+            <div class="dropdown-list-content dropdown-list-message">
+              <a href="#" class="dropdown-item">
+                <span class="dropdown-item-avatar text-white">
+                  <img alt="image" src="assets/img/users/user-5.png" class="image-square">
+                </span>
+                <span class="dropdown-item-desc">
+                  <span class="message-user">Sophie Walker</span>
+                  <span class="time messege-text">Project Planning</span>
+                  <span class="time">10 Minutes Ago</span>
+                </span>
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="dropdown-item-avatar text-white">
+                  <img alt="image" src="assets/img/users/user-4.png" class="image-square">
+                </span>
+                <span class="dropdown-item-desc">
+                  <span class="message-user">Ryan Porter</span>
+                  <span class="time messege-text">Project Analysis</span>
+                  <span class="time">2 Hours Ago</span>
+                </span>
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="dropdown-item-avatar text-white">
+                  <img alt="image" src="assets/img/users/user-1.png" class="image-square">
+                </span>
+                <span class="dropdown-item-desc">
+                  <span class="message-user">Robert Nelson</span>
+                  <span class="time messege-text">Leave application !!</span>
+                  <span class="time">4 Hours Ago</span>
+                </span>
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="dropdown-item-avatar text-white">
+                  <img alt="image" src="assets/img/users/user-2.png" class="image-square">
+                </span>
+                <span class="dropdown-item-desc">
+                  <span class="message-user">Clara Martin</span>
+                  <span class="time messege-text">Client meeting</span>
+                  <span class="time">1 Day Ago</span>
+                </span>
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="dropdown-item-avatar text-white">
+                  <img alt="image" src="assets/img/users/user-3.png" class="image-square">
+                </span>
+                <span class="dropdown-item-desc">
+                  <span class="message-user">Kevin Rogers</span>
+                  <span class="time messege-text">Discussion about Issues</span>
+                  <span class="time">3 Days Ago</span>
+                </span>
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="dropdown-item-avatar text-white">
+                  <img alt="image" src="assets/img/users/user-2.png" class="image-square">
+                </span>
+                <span class="dropdown-item-desc">
+                  <span class="message-user">Clara Martin</span>
+                  <span class="time messege-text">Team meeting</span>
+                  <span class="time text-primary">5 Days Ago</span>
+                </span>
+              </a>
+            </div>
+            <div class="dropdown-footer text-center">
+              <a href="#">View All <i class="fas fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </li>
+
+        <li class="dropdown"><a href="#" data-toggle="dropdown"
+            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+            <img alt="image" src="assets/img/user.png" class="user-img-radious-style">
+            <span class="d-sm-none d-lg-inline-block"></span></a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-title">Hello Alexa Lopez</div>
+            <a href="profile.html" class="dropdown-item has-icon">
+              <i class="far fa-user"></i> Profile
+            </a>
+            <a href="timeline.html" class="dropdown-item has-icon">
+              <i class="fas fa-bolt"></i> Activities
+            </a>
+            <a href="#" class="dropdown-item has-icon">
+              <i class="fas fa-cog"></i> Settings
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="auth-login.html" class="dropdown-item has-icon text-danger">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <div class="main-sidebar sidebar-style-2">
+      <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+          <a href="index.html">
+            <img alt="image" src="assets/img/logo.png" class="header-logo" />
+            <span class="logo-name">Home Baker's Kitchen</span>
+          </a>
+        </div>
+        <ul class="sidebar-menu">
+          <li class="menu-header"> Admin Features</li>
+          <li class="dropdown">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+            <ul class="dropdown-menu">
+              <li><a class="nav-link" href="index.html">Dashboard V1</a></li>
+              <li><a class="nav-link" href="index2.html">Dashboard V2</a></li>
+            </ul>
+          </li>
+          <li class="active"><a class="nav-link" href="widget.html"><i class="fas fa-boxes"></i><span>Widgets</span></a></li>
+          <li><a class="nav-link" href="timeline.html"><i class="far fa-calendar-alt"></i><span>Timeline</span></a></li>
+          <li class="dropdown">
+            <a href="#" class="nav-link has-dropdown"><i class="fab fa-atlassian"></i><span>Apps</span></a>
+            <ul class="dropdown-menu">
+              <li><a class="nav-link" href="chat.html">Chat</a></li>
+              <li><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+              <li><a class="nav-link" href="blog.html">Blog</a></li>
+              <li><a class="nav-link" href="calendar.html">Calendar</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-envelope-open-text"></i><span>Email</span></a>
+            <ul class="dropdown-menu">
+              <li><a class="nav-link" href="email-inbox.html">Inbox</a></li>
+              <li><a class="nav-link" href="email-compose.html">Compose</a></li>
+              <li><a class="nav-link" href="email-read.html">read</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </aside>
     </div>
-    <div class="col-12 col-md-12 col-lg-8">
-      <div class="card">
-        <div class="padding-20">
-          <ul class="nav nav-pills mb-1" id="myTab2" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="home-tab2" data-toggle="tab" href="#about" role="tab"
-                aria-selected="true">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#settings" role="tab"
-                aria-selected="false">Edit Profile</a>
-            </li>
-          </ul>
-          <div class="tab-content tab-bordered" id="myTab3Content">
-            <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab2">
-              <div class="row">
-                <div class="col-md-3 col-6 b-r">
-                  <strong>Full Name</strong>
-                  <br>
-                  <p class="text-muted">Alexa Lopez</p>
-                </div>
-                <div class="col-md-3 col-6 b-r">
-                  <strong>Mobile</strong>
-                  <br>
-                  <p class="text-muted">(0123) 456 7890</p>
-                </div>
-                <div class="col-md-3 col-6 b-r">
-                  <strong>Email</strong>
-                  <br>
-                  <p class="text-muted">jessica@example.com</p>
-                </div>
-                <div class="col-md-3 col-6">
-                  <strong>Location</strong>
-                  <br>
-                  <p class="text-muted">India</p>
-                </div>
-              </div>
-              <p class="m-t-30">Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem
-                Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when
-                an unknown printer took a galley of type and scrambled it to make a
-                type
-                specimen book. It has survived not only five centuries, but also the
-                leap
-                into electronic typesetting, remaining essentially unchanged.</p>
-              <div class="section-title">Education</div>
-              <ul>
-                <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                  industry.
-                </li>
-                <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                  industry.
-                </li>
-                <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                  industry.
-                </li>
-              </ul>
-              <div class="section-title">Experience</div>
-              <ul>
-                <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                  industry.
-                </li>
-               <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                  industry.
-                </li>
-                <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                  industry.
-                </li>
-                <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                  industry.
-                </li>
-              </ul>
-            </div>
-            <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="profile-tab2">
-              <form method="post" class="needs-validation">
-                <div class="card-header">
-                  <h4>Edit Profile</h4>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="form-group col-md-6 col-12">
-                      <label>First Name</label>
-                      <input type="text" class="form-control" value="Jessica">
-                      <div class="invalid-feedback">
-                        Please fill in the first name
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6 col-12">
-                      <label>Last Name</label>
-                      <input type="text" class="form-control" value="Hill">
-                      <div class="invalid-feedback">
-                        Please fill in the last name
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-md-7 col-12">
-                      <label>Email</label>
-                      <input type="email" class="form-control" value="jessica@example.com">
-                      <div class="invalid-feedback">
-                        Please fill in the email
-                      </div>
-                    </div>
-                    <div class="form-group col-md-5 col-12">
-                      <label>Phone</label>
-                      <input type="tel" class="form-control" value="">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-12">
-                      <label>Bio</label>
-                      <textarea
-                        class="form-control summernote-simple">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur voluptatum alias molestias minus quod dignissimos.</textarea>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group mb-0 col-12">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="remember" class="custom-control-input" id="newsletter">
-                        <label class="custom-control-label" for="newsletter">Subscribe to newsletter</label>
-                        <div class="text-muted form-text">
-                          You will get new information about products, offers and promotions
+    <!-- Main Content -->
+    <div class="main-content">
+      <section class="section">
+        <div class="section-body">
+          <div class="container-fluid">
+            <div class="card mb-4 profile-prt">
+                <div class="container-block">
+                    <div class="row m-y-2">
+                        <div class="col-lg-4 pull-lg-8 text-xs-center profile-pic">
+                            <img class="m-x-auto img-fluid img-circle" [src]=profileImage>
+                            <input type="file" (change)="addImage($event)">
                         </div>
-                      </div>
+                        <div class="col-12 col-md-8 col-lg-8">
+                            <div class="buttons" style="margin-top: 5px; margin-left: 5px;">
+                                <a (click)="EditProfile()" style="color:white" class="btn btn-icon icon-left btn-primary"><i class="fas fa-edit"></i>Edit Profile</a>
+                                <a href="/home/account-info/" class="btn btn-icon icon-left btn-primary"><i class="fas fa-user-plus"></i>Register Shop</a>
+                                <label style="background-color: red;">{{ userDetails.is_shop_verified== true ? "Shop Verified" : "Shop Verification Pending" }}</label>
+
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table table-hover table-striped">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <strong>Name :</strong> {{ userDetails.first_name}} {{userDetails.last_name}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>E-mail:</strong> {{ userDetails.email}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Mobile:</strong> +91  {{ userDetails.phone_no}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Address:</strong> {{ userDetails.address}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </div>
                     </div>
-                  </div>
+
                 </div>
-                <div class="card-footer text-right">
-                  <button class="btn btn-primary">Save Changes</button>
-                </div>
-              </form>
             </div>
-          </div>
+            </div>
+            </div>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </div>
