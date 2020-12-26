@@ -66,7 +66,7 @@ import { ViewItemComponent } from './dynamic_menu/view-item/view-item.component'
     MatSelectModule,
     MatInputModule,
     MatSnackBarModule,
-     NgxPaginationModule,
+    NgxPaginationModule,
   ],
   entryComponents: [
     AddEditServiceAreaComponent,

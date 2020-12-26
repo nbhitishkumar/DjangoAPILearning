@@ -227,50 +227,8 @@
           <div class="container-fluid">
             <div class="card mb-4 profile-prt">
                 <div class="container-block">
-                    <div class="row m-y-2">
-                        <div class="col-lg-4 pull-lg-8 text-xs-center profile-pic">
-                            <img class="m-x-auto img-fluid img-circle" [src]=profileImage>
-                            <input type="file" (change)="addImage($event)">
-                        </div>
-                        <div class="col-12 col-md-8 col-lg-8">
-                            <div class="buttons" style="margin-top: 5px; margin-left: 5px;">
-                                <a (click)="EditProfile()" style="color:white" class="btn btn-icon icon-left btn-primary"><i class="fas fa-edit"></i>Edit Profile</a>
-                                <a href="/home/account-info/" class="btn btn-icon icon-left btn-primary"><i class="fas fa-user-plus"></i>Register Shop</a>
-                                <label style="background-color: red;">{{ userDetails.is_shop_verified== true ? "Shop Verified" : "Shop Verification Pending" }}</label>
-
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <table class="table table-hover table-striped">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <strong>Name :</strong> {{ userDetails.first_name}} {{userDetails.last_name}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <strong>E-mail:</strong> {{ userDetails.email}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <strong>Mobile:</strong> +91  {{ userDetails.phone_no}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <strong>Address:</strong> {{ userDetails.address}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                        </div>
-                    </div>
-
+                    
                 </div>
-            </div>
             </div>
             </div>
         </div>
