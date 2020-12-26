@@ -1,29 +1,31 @@
-
-<div class="text-right"><a href="javascript:void(0)" (click)="closePopup()" >X</a></div>
-<h3 class="heading">{{ itemList.item_name }}</h3>
-<div class="card-body mt-3 mb-5">
-  <div class="card-header">
-    <div class="image-upload">
-      <img width='100%' height='200px' src="{{'data:image/jpg;base64,' + itemList.item_image}}" alt="{{itemList.item_name}}">
-    </div>
-   </div>
-  <div class="card-body">
-    <p ><strong>Item Description:-</strong> {{itemList.item_description}}</p>
+<div class="container-block">
+  <div class="text-right"><a href="javascript:void(0)" (click)="closePopup()" >X</a></div>
+  <div class="row m-y-2">
+    <div class="col-lg-6 pull-lg-8 text-xs-center profile-pic">
+      <img class="m-x-auto img-fluid img-circle" src="{{'data:image/jpg;base64,' + itemList.item_image}}" alt="{{itemList.item_name}}">
+  </div>
+  <div class="col-12 col-md-6 col-lg-6">
+    
+    <h3 class="heading">{{ itemList.item_name  }}</h3>
     <p><strong>Item Preparing Time:-</strong> {{itemList.item_preparing_time}}</p>
     <p><strong>Item Delivery Time:-</strong> {{itemList.item_delivery_time}}</p>
-    <p><strong>Item Price:- </strong>{{itemList.item_price}}</p>
+    <p><strong>Item Price:- &#x20b9;</strong>{{itemList.item_price}}</p>
+    <p ><strong>Item Description:-</strong> {{itemList.item_description}}</p>
     <form [formGroup]="addComment" (ngSubmit)="Comment()">
       <div class="comment">
           <textarea class="form-control" [formControl]="comment" placeholder="Comment on Image"></textarea>
-          <button style="float: right; padding-top:10px"  class="btn btn-primary">
-              <i class="far fa-paper-plane"></i>
-          </button>
+          <div class="card-body">
+            <div class="buttons" style="align-items: center; margin-right: auto;margin-left: auto; margin-left: 40%;">
+              <a  class="btn btn-primary"><i class="fas fa-check"></i></a>
+              <a  class="btn  btn-primary"><i class="fas fa-times"></i></a>
+            <button  class="btn  btn-primary"><i class="far fa-paper-plane"></i></button>
+            </div>
+          </div>
       </div>
-    </form>
- </div>
- <div style="align-items: center; padding-top: 10px; margin-right: auto; margin-left: auto;">
-  <a  class="btn btn-primary"><i class="fas fa-check"></i></a>
-  <a  class="btn  btn-primary"><i class="fas fa-times"></i></a>
+      </form>
+  </div>
+  </div>
 </div>
-</div>
+
+
 

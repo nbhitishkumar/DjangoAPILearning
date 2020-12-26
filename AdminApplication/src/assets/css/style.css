@@ -3434,7 +3434,7 @@ select.form-control:not([size]):not([multiple]) {
 
 .card.card-auth .card-header-auth {
 	background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
-
+	
 }
 
 .card.card-auth .card-header-auth h4 {
@@ -7947,7 +7947,7 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 	background-image: -webkit-linear-gradient(360deg, #343a5d 0, #e0376f 100%);
 	background-image: -ms-linear-gradient(360deg, #343a5d 0, #e0376f 100%) */
 	background-color: rgba(243,161,163,1);
-
+	
 }
 
 .purple-sidebar.sidebar-mini .main-sidebar .sidebar-user {

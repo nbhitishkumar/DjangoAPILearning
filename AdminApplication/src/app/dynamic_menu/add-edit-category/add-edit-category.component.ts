@@ -17,8 +17,10 @@ export class AddEditCategoryComponent implements OnInit {
   categoryDes = new FormControl('', [Validators.required]);
   categoryImg = new FormControl('', [Validators.required]);
   category_id: number = 0;
-  pageTitle: string = 'Add Category'
-  buttonText: string = 'Save'
+  pageTitle: string = 'Add Category';
+  buttonText: string = 'Save';
+  files: any = {};
+  fileType : string=''
 
   constructor(
     _formbuilder: FormBuilder,
@@ -26,8 +28,8 @@ export class AddEditCategoryComponent implements OnInit {
     public categoryData:any,
 		private dialog: MatDialog,
     private ar: ActivatedRoute,
-
     private router: Router,
+    private userservice: UserService,
     private common: CommonService,
     private adminservice: AdminApiService
   ) {
@@ -43,7 +45,6 @@ export class AddEditCategoryComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.categoryData.id)
     if(this.category_id !=0){
       const reqData ={
         category_id: this.category_id
@@ -71,6 +72,22 @@ export class AddEditCategoryComponent implements OnInit {
   }
 
 
+  uploadImage(event){
+    var target: HTMLInputElement = event.target as HTMLInputElement;
+    this.fileType = target.files[0].type;
+    this.files = target.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(target.files[0]);
+    if (target.files[0].type === "image/jpeg" ||
+      target.files[0].type === "image/jpg" ||
+      target.files[0].type === "image/png") {
+        // this.addCategory.get('categoryImage').setValue(files)
+      } else {
+        alert("Please upload Image")
+      }
+  }
+
+
 
   closePopup() {
     this.dialogRef.close();
@@ -80,39 +97,49 @@ export class AddEditCategoryComponent implements OnInit {
     if(this.addCategory.valid){
       const formData: any = {
         category_name: this.addCategory.value.categoryName,
-        category_des: this.addCategory.value.categoryDes
+        category_des: this.addCategory.value.categoryDes,
+
       }
-      console.log(formData)
-
       if(this.category_id ==0){
-        this.adminservice.saveCategory(formData).subscribe(
-          res => {
-            if(res['status'] == 1){
-              var files: any ={};
-              var target: HTMLInputElement = event.target as HTMLInputElement;
-
-              const reqData: any ={
-                category_id: res["data"][0]['id'],
-
+        if (this.fileType === "image/jpeg" ||
+          this.fileType === "image/jpg" ||
+          this.fileType === "image/png") {
+            this.adminservice.saveCategory(formData).subscribe(
+              res => {
+                if(res['status'] == 1){
+                  this.adminservice.getCategoryIdByName(formData).subscribe(
+                    res => {
+                      if(res['status'] == 1){
+                        this.saveCategoryImage(this.files, this.fileType, res['category_id'])
+                        this.closePopup();
+                      }
+                      else{
+                        this.common.openSnackBar('please try later','')
+                      }
+                    },
+                    err => {
+                      this.common.openSnackBar('please try later', '');
+                    }
+                  );
+                }
+                else{
+                  this.common.openSnackBar('Category is not save please try later', '');
+                }
+              },
+              err => {
+                this.common.openSnackBar('please try later', '');
               }
-              this.closePopup();
-            }
-            else{
-              this.common.openSnackBar('Category is not save please try later', '');
-            }
-          },
-          err => {
-            console.log("ERROR");
-            console.log(err);
-            this.common.openSnackBar('please try later', '');
-          }
-        );
+            );
+        } else {
+          this.common.openSnackBar(' Please upload jpeg/jpg/png files only','');
+        }
       }
       if(this.category_id !=0){
         formData['category_id'] = this.category_id;
         this.adminservice.updateCategory(formData).subscribe(
           res => {
             if(res['status'] == 1){
+              this.saveCategoryImage(this.files, this.fileType, this.category_id)
               this.closePopup();
             }
             else{
@@ -128,6 +155,27 @@ export class AddEditCategoryComponent implements OnInit {
       }
     }
 
+  }
+
+  saveCategoryImage(file, file_type, category_id) {
+    var form_data = new FormData();
+    form_data.append("file", file);
+    form_data.append('file_type', file_type);
+    form_data.append('up_dir', 'category_image');
+    form_data.append('category_id', category_id)
+    this.userservice.uploadCategoryImage(form_data).subscribe(
+      res => {
+        if(res['status']==1) {
+
+        } else {
+          this.common.openSnackBar(res['message'], '')
+        }
+      },
+      err => {
+        this.common.openSnackBar('ERROR IN FILE UPLOAD, PLEASE TRY AGAIN LATER.','');
+      }
+  
+    );
   }
 
 

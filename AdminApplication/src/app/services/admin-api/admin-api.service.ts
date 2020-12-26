@@ -126,5 +126,12 @@ export class AdminApiService {
     return this.http.post(this.actionUrl + 'dynamicMenu/item-details/',  reqData, authHeader);
   }
 
+  getCategoryIdByName(reqData,){
+    let authHeader = this.common.getHttpOptionWithLogin();
+    return this.http.post(this.actionUrl + 'dynamicMenu/ get-lastCategoryId/',  reqData, authHeader);
+  }
+
+
+
 
 }

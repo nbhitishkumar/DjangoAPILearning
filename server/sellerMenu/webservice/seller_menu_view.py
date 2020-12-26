@@ -71,6 +71,7 @@ class SellerCategoryMenuView(generics.ListAPIView):
         rs = User.objects.filter(id=user_id,is_superuser=True, is_active=True, is_blocked=False, is_deleted=False)
         if rs:
             check_Category = SellerCategory.objects.filter(category_name=requestdata['category_name'],is_deleted=False).count()
+            print(check_Category)
             if check_Category > 0:
                 response['status'] = 0
                 response['msg'] = 'Category Already Added'
@@ -275,6 +276,33 @@ class SellerItemListbyId(generics.ListAPIView):
         return Response(response_data, status=http_status_code)
 
 
+class GetCategoryId(generics.ListAPIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self, request):
+        user = request.user
+        user_id = user.id
+        requestdata = request.data
+        response_data = {}
+        rs = User.objects.filter(id=user_id,is_deleted=False)
+        if rs:
+            item_list = SellerCategory.objects.filter(category_name=requestdata['category_name']).values('id').distinct()
+            if item_list:
+                category_id= item_list[0]['id']
+                response_data['status'] = 1
+                response_data['msg'] = 'Successfully get seller details'
+                response_data['category_id'] = category_id
+                http_status_code = 200
+            else:
+                response_data['status'] = 0
+                response_data['category_id'] = 'No data found'
+                http_status_code = 404
+        else:
+            response_data['status'] = 0
+            response_data['msg'] = 'User Not Found'
+            http_status_code = 404
+        return Response(response_data, status=http_status_code)
+
+
 class SellerItemViewId(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
     def post(self, request, format=None):
@@ -348,11 +376,13 @@ class ItemImageUpload(mixins.CreateModelMixin, generics.ListAPIView):
             for chunk in file1.chunks():
                 destination.write(chunk)
             destination.close()
-            if up_dir == 'item_image':
-                obj = SellerItem.objects.filter(id=user_id).update(
-                item_image=uploaded_file_name
-                )
-            elif up_dir == 'category_image':
+            # if up_dir == 'item_image':
+            #     obj = SellerItem.objects.filter(id=user_id).update(
+            #     item_image=uploaded_file_name
+            #     )
+            print(category_id)
+            if up_dir == 'category_image':
+                print('up')
                 obj = SellerCategory.objects.filter(id=category_id).update(
                 category_image =uploaded_file_name
                 )

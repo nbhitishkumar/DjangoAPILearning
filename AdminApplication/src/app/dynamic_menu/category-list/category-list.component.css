@@ -13,6 +13,11 @@
 	font-family: HomeBakerKitchen;
 	font-size: 30px;
 }
+.headingBody{
+	font-family: HomeBakerKitchen;
+	font-weight: bolder;
+	font-size: 30px;
+}
 
 img {
 	height: 150px;

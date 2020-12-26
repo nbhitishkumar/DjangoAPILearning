@@ -21,12 +21,8 @@
           </mat-form-field>
     </div>
     <div class="form-group">
-      <label>Category Image</label>
-      <input type="file" placeholder="Category Image" [formControl]="categoryImg">
-      <mat-error *ngIf="categoryImg.hasError('required')">
-        Category Image is
-        <strong>required</strong>
-      </mat-error>
+      <p>Category Image</p>
+      <input type="file" (change)="uploadImage($event)" placeholder="Category Image"  [formControl]="categoryImg">
   </div>
     <div class="buttons" style="padding-left: 5px;">
       <button class="btn btn-icon icon-left btn-primary">{{buttonText}}</button>

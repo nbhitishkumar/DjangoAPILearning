@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^seller-categoryByid/$', seller_menu_view.CategoryDetailsByidView.as_view(), name='seller-categoryByid'),
     url(r'^delete-categoryByid/$', seller_menu_view.DeleteCategory.as_view(), name='delete-categoryByid'),
     url(r'^seller-categoryName/$', seller_menu_view.CategoryNameById.as_view(), name='seller-categoryName'),
+    url(r'^get-lastCategoryId/$', seller_menu_view.GetCategoryId.as_view(), name='get-lastCategoryId'),
 
 
 
