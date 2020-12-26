@@ -1,7 +1,0 @@
-{
-  "name": "VendorApplication",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
